@@ -1,7 +1,12 @@
 aid: united-natural-foods
-url: https://raw.githubusercontent.com/api-evangelist/united-natural-foods/refs/heads/main/apis.yml
+url: 
+  https://raw.githubusercontent.com/api-evangelist/united-natural-foods/refs/heads/main/apis.yml
 modified: '2026-03-21'
 apis: []
 common:
   - type: Website
     url: https://www.united-natural-foods.com
+description: >-
+  United Natural Foods is the largest publicly traded wholesale distributor of health
+  and specialty food in the United States and Canada, supplying natural, organic,
+  and specialty foods to retailers.
