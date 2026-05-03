@@ -1,0 +1,19 @@
+{
+  "name": "UNFI Product",
+  "description": "Structure of a product in the UNFI wholesale food distribution catalog.",
+  "fields": [
+    { "name": "productId", "type": "string", "required": false, "description": "UNFI-assigned identifier (e.g., UNFI-0012345)" },
+    { "name": "upc", "type": "string", "required": true, "description": "12-digit Universal Product Code" },
+    { "name": "gtin", "type": "string", "required": false, "description": "14-digit Global Trade Item Number (GS1 GDSN)" },
+    { "name": "name", "type": "string", "required": true, "description": "Product name" },
+    { "name": "brand", "type": "string", "required": true, "description": "Brand name" },
+    { "name": "description", "type": "string", "required": false, "description": "Product description" },
+    { "name": "category", "type": "string", "required": true, "description": "Primary category (Snacks, Beverages, etc.)" },
+    { "name": "subCategory", "type": "string", "required": false, "description": "Subcategory" },
+    { "name": "certifications", "type": "array", "required": false, "items": { "type": "string", "values": ["organic", "non-gmo", "kosher", "gluten-free", "vegan", "fair-trade"] } },
+    { "name": "unitSize", "type": "string", "required": false, "description": "e.g., 7 oz, 1 lb" },
+    { "name": "unitsPerCase", "type": "integer", "required": false },
+    { "name": "retailPrice", "type": "number", "required": false, "description": "Suggested retail price USD" },
+    { "name": "status", "type": "enum", "required": true, "values": ["active", "discontinued", "seasonal"] }
+  ]
+}

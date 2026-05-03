@@ -1,0 +1,99 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/united-natural-foods/main/json-schema/unfi-supplier-order-schema.json",
+  "title": "UNFI Purchase Order",
+  "description": "Schema representing a UNFI wholesale purchase order between UNFI and a supplier.",
+  "type": "object",
+  "properties": {
+    "orderId": {
+      "type": "string",
+      "description": "UNFI internal order identifier"
+    },
+    "purchaseOrderNumber": {
+      "type": "string",
+      "description": "Customer-facing purchase order number"
+    },
+    "status": {
+      "type": "string",
+      "enum": ["pending", "confirmed", "shipped", "delivered", "cancelled"],
+      "description": "Order fulfillment status"
+    },
+    "supplierId": {
+      "type": "string",
+      "description": "UNFI supplier identifier"
+    },
+    "warehouseId": {
+      "type": "string",
+      "description": "Destination UNFI warehouse identifier"
+    },
+    "orderDate": {
+      "type": "string",
+      "format": "date",
+      "description": "Order placement date"
+    },
+    "requiredDeliveryDate": {
+      "type": "string",
+      "format": "date",
+      "description": "Required delivery date at UNFI warehouse"
+    },
+    "lineItems": {
+      "type": "array",
+      "description": "Order line items",
+      "items": {
+        "$ref": "#/$defs/OrderLineItem"
+      },
+      "minItems": 1
+    },
+    "totalAmount": {
+      "type": "number",
+      "format": "double",
+      "minimum": 0,
+      "description": "Total order cost in USD"
+    }
+  },
+  "required": ["orderId", "purchaseOrderNumber", "status", "supplierId", "warehouseId", "orderDate"],
+  "$defs": {
+    "OrderLineItem": {
+      "type": "object",
+      "title": "Order Line Item",
+      "description": "A single product line item within a purchase order",
+      "properties": {
+        "lineId": {
+          "type": "string",
+          "description": "Line item identifier"
+        },
+        "productId": {
+          "type": "string",
+          "description": "UNFI product identifier"
+        },
+        "upc": {
+          "type": "string",
+          "description": "Product UPC"
+        },
+        "quantityOrdered": {
+          "type": "integer",
+          "minimum": 1,
+          "description": "Number of units ordered"
+        },
+        "quantityShipped": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "Number of units shipped"
+        },
+        "unitCost": {
+          "type": "number",
+          "format": "double",
+          "minimum": 0,
+          "description": "Cost per unit in USD"
+        },
+        "totalCost": {
+          "type": "number",
+          "format": "double",
+          "minimum": 0,
+          "description": "Total line item cost in USD"
+        }
+      },
+      "required": ["productId", "quantityOrdered", "unitCost"]
+    }
+  }
+}

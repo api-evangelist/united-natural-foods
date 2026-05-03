@@ -1,0 +1,765 @@
+openapi: 3.1.0
+info:
+  title: UNFI Supplier and Data API
+  description: >-
+    United Natural Foods, Inc. (UNFI) provides APIs for suppliers, retailers, and
+    data partners to interact with UNFI's distribution network. The UNFI API suite
+    includes the Harmony Core API for read-only access to supply chain data files,
+    the Supplier Portal API for product catalog and order management, and EDI
+    integration for automated procure-to-pay workflows.
+  version: 1.0.0
+  contact:
+    name: UNFI Supplier Support
+    url: https://unfinc.zendesk.com/hc/en-us
+  termsOfService: https://suppliers.unfi.com
+servers:
+  - url: https://api.unfi.com/v1
+    description: UNFI Production API
+tags:
+  - name: Products
+    description: Product catalog and listing management
+  - name: Orders
+    description: Purchase orders and fulfillment
+  - name: Insights
+    description: Analytics and data reporting
+  - name: Suppliers
+    description: Supplier profile and warehouse management
+paths:
+  /products:
+    get:
+      operationId: listProducts
+      summary: List Products
+      description: >-
+        Retrieve a paginated list of products in the UNFI catalog. Supports
+        filtering by category, brand, and certification type.
+      tags:
+        - Products
+      parameters:
+        - name: category
+          in: query
+          schema:
+            type: string
+          description: Product category filter
+        - name: brand
+          in: query
+          schema:
+            type: string
+          description: Brand name filter
+        - name: certification
+          in: query
+          schema:
+            type: string
+            enum: [organic, non-gmo, kosher, gluten-free, vegan]
+          description: Filter by product certification
+        - name: page
+          in: query
+          schema:
+            type: integer
+            default: 1
+          description: Page number for pagination
+        - name: pageSize
+          in: query
+          schema:
+            type: integer
+            default: 50
+            maximum: 200
+          description: Number of results per page
+      responses:
+        '200':
+          description: Product list returned successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProductListResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+      security:
+        - ApiKeyAuth: []
+    post:
+      operationId: createProduct
+      summary: Create Product
+      description: Submit a new product listing to the UNFI catalog via the supplier portal.
+      tags:
+        - Products
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ProductRequest'
+      responses:
+        '201':
+          description: Product created successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Product'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+      security:
+        - ApiKeyAuth: []
+  /products/{productId}:
+    get:
+      operationId: getProduct
+      summary: Get Product
+      description: Retrieve details for a specific product by its UNFI product ID.
+      tags:
+        - Products
+      parameters:
+        - name: productId
+          in: path
+          required: true
+          schema:
+            type: string
+          description: UNFI product identifier
+      responses:
+        '200':
+          description: Product details returned
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Product'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+      security:
+        - ApiKeyAuth: []
+    put:
+      operationId: updateProduct
+      summary: Update Product
+      description: Update an existing product listing in the UNFI catalog.
+      tags:
+        - Products
+      parameters:
+        - name: productId
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ProductRequest'
+      responses:
+        '200':
+          description: Product updated successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Product'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+      security:
+        - ApiKeyAuth: []
+  /orders:
+    get:
+      operationId: listOrders
+      summary: List Orders
+      description: Retrieve purchase orders for the supplier or retailer account.
+      tags:
+        - Orders
+      parameters:
+        - name: status
+          in: query
+          schema:
+            type: string
+            enum: [pending, confirmed, shipped, delivered, cancelled]
+          description: Filter by order status
+        - name: startDate
+          in: query
+          schema:
+            type: string
+            format: date
+          description: Start date filter
+        - name: endDate
+          in: query
+          schema:
+            type: string
+            format: date
+          description: End date filter
+        - name: warehouseId
+          in: query
+          schema:
+            type: string
+          description: Filter by UNFI warehouse
+      responses:
+        '200':
+          description: Orders returned successfully
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Order'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+      security:
+        - ApiKeyAuth: []
+  /orders/{orderId}:
+    get:
+      operationId: getOrder
+      summary: Get Order
+      description: Retrieve details for a specific purchase order.
+      tags:
+        - Orders
+      parameters:
+        - name: orderId
+          in: path
+          required: true
+          schema:
+            type: string
+          description: Purchase order identifier
+      responses:
+        '200':
+          description: Order details returned
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Order'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+      security:
+        - ApiKeyAuth: []
+  /orders/{orderId}/fulfillment:
+    post:
+      operationId: submitFulfillment
+      summary: Submit Order Fulfillment
+      description: Submit fulfillment information for a purchase order including ship date and tracking.
+      tags:
+        - Orders
+      parameters:
+        - name: orderId
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/FulfillmentRequest'
+      responses:
+        '200':
+          description: Fulfillment submitted successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Order'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+      security:
+        - ApiKeyAuth: []
+  /insights/sales:
+    get:
+      operationId: getSalesInsights
+      summary: Get Sales Insights
+      description: >-
+        Retrieve sales analytics data from the UNFI Insights dashboard. Provides
+        comprehensive sales, inventory, and deduction data across UNFI's entire
+        network spanning both natural (west) and conventional (east) distribution channels.
+      tags:
+        - Insights
+      parameters:
+        - name: startDate
+          in: query
+          required: true
+          schema:
+            type: string
+            format: date
+          description: Start date for insights query
+        - name: endDate
+          in: query
+          required: true
+          schema:
+            type: string
+            format: date
+          description: End date for insights query
+        - name: granularity
+          in: query
+          schema:
+            type: string
+            enum: [weekly, monthly, quarterly]
+            default: monthly
+          description: Data aggregation granularity
+        - name: region
+          in: query
+          schema:
+            type: string
+            enum: [east, west, all]
+            default: all
+          description: Distribution region filter
+      responses:
+        '200':
+          description: Sales insights returned
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SalesInsightsResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+      security:
+        - ApiKeyAuth: []
+  /insights/fill-rates:
+    get:
+      operationId: getFillRates
+      summary: Get Fill Rate Data
+      description: Retrieve fill rate metrics for supplier products across UNFI distribution centers.
+      tags:
+        - Insights
+      parameters:
+        - name: startDate
+          in: query
+          required: true
+          schema:
+            type: string
+            format: date
+        - name: endDate
+          in: query
+          required: true
+          schema:
+            type: string
+            format: date
+        - name: productId
+          in: query
+          schema:
+            type: string
+          description: Filter by specific product
+      responses:
+        '200':
+          description: Fill rate data returned
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FillRateResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+      security:
+        - ApiKeyAuth: []
+  /insights/inventory:
+    get:
+      operationId: getInventoryInsights
+      summary: Get Inventory Insights
+      description: Retrieve inventory levels, voids, and food waste dashboard data.
+      tags:
+        - Insights
+      parameters:
+        - name: warehouseId
+          in: query
+          schema:
+            type: string
+          description: Filter by specific UNFI warehouse
+        - name: asOf
+          in: query
+          schema:
+            type: string
+            format: date
+          description: Inventory snapshot date
+      responses:
+        '200':
+          description: Inventory insights returned
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InventoryInsightsResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+      security:
+        - ApiKeyAuth: []
+  /suppliers/{supplierId}:
+    get:
+      operationId: getSupplier
+      summary: Get Supplier Profile
+      description: Retrieve supplier profile including contact and warehouse information.
+      tags:
+        - Suppliers
+      parameters:
+        - name: supplierId
+          in: path
+          required: true
+          schema:
+            type: string
+          description: UNFI supplier identifier
+      responses:
+        '200':
+          description: Supplier profile returned
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Supplier'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+      security:
+        - ApiKeyAuth: []
+    put:
+      operationId: updateSupplier
+      summary: Update Supplier Profile
+      description: Update supplier contact, warehouse, and broker information.
+      tags:
+        - Suppliers
+      parameters:
+        - name: supplierId
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SupplierUpdateRequest'
+      responses:
+        '200':
+          description: Supplier profile updated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Supplier'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+      security:
+        - ApiKeyAuth: []
+components:
+  securitySchemes:
+    ApiKeyAuth:
+      type: apiKey
+      in: header
+      name: X-API-Key
+      description: UNFI supplier API key
+  schemas:
+    Product:
+      type: object
+      properties:
+        productId:
+          type: string
+          description: UNFI product identifier
+        upc:
+          type: string
+          description: Universal Product Code
+        gtin:
+          type: string
+          description: Global Trade Item Number (GS1 GDSN)
+        name:
+          type: string
+        brand:
+          type: string
+        description:
+          type: string
+        category:
+          type: string
+        subCategory:
+          type: string
+        certifications:
+          type: array
+          items:
+            type: string
+            enum: [organic, non-gmo, kosher, gluten-free, vegan, fair-trade]
+        unitSize:
+          type: string
+        unitsPerCase:
+          type: integer
+        retailPrice:
+          type: number
+          format: double
+        status:
+          type: string
+          enum: [active, discontinued, seasonal]
+    ProductRequest:
+      type: object
+      required:
+        - upc
+        - name
+        - brand
+        - category
+      properties:
+        upc:
+          type: string
+        gtin:
+          type: string
+        name:
+          type: string
+        brand:
+          type: string
+        description:
+          type: string
+        category:
+          type: string
+        subCategory:
+          type: string
+        certifications:
+          type: array
+          items:
+            type: string
+        unitSize:
+          type: string
+        unitsPerCase:
+          type: integer
+        retailPrice:
+          type: number
+          format: double
+    ProductListResponse:
+      type: object
+      properties:
+        products:
+          type: array
+          items:
+            $ref: '#/components/schemas/Product'
+        total:
+          type: integer
+        page:
+          type: integer
+        pageSize:
+          type: integer
+    Order:
+      type: object
+      properties:
+        orderId:
+          type: string
+        purchaseOrderNumber:
+          type: string
+        status:
+          type: string
+          enum: [pending, confirmed, shipped, delivered, cancelled]
+        supplierId:
+          type: string
+        warehouseId:
+          type: string
+        orderDate:
+          type: string
+          format: date
+        requiredDeliveryDate:
+          type: string
+          format: date
+        lineItems:
+          type: array
+          items:
+            $ref: '#/components/schemas/OrderLineItem'
+        totalAmount:
+          type: number
+          format: double
+    OrderLineItem:
+      type: object
+      properties:
+        lineId:
+          type: string
+        productId:
+          type: string
+        upc:
+          type: string
+        quantityOrdered:
+          type: integer
+        quantityShipped:
+          type: integer
+        unitCost:
+          type: number
+          format: double
+        totalCost:
+          type: number
+          format: double
+    FulfillmentRequest:
+      type: object
+      required:
+        - shipDate
+        - carrier
+        - trackingNumber
+      properties:
+        shipDate:
+          type: string
+          format: date
+        carrier:
+          type: string
+        trackingNumber:
+          type: string
+        lineItems:
+          type: array
+          items:
+            type: object
+            properties:
+              lineId:
+                type: string
+              quantityShipped:
+                type: integer
+    SalesInsightsResponse:
+      type: object
+      properties:
+        period:
+          type: string
+        region:
+          type: string
+        totalSales:
+          type: number
+          format: double
+        unitsSold:
+          type: integer
+        topProducts:
+          type: array
+          items:
+            type: object
+            properties:
+              productId:
+                type: string
+              name:
+                type: string
+              sales:
+                type: number
+                format: double
+              unitsSOld:
+                type: integer
+        categoryBreakdown:
+          type: array
+          items:
+            type: object
+            properties:
+              category:
+                type: string
+              sales:
+                type: number
+                format: double
+    FillRateResponse:
+      type: object
+      properties:
+        period:
+          type: string
+        overallFillRate:
+          type: number
+          format: double
+          description: Overall fill rate percentage
+        byProduct:
+          type: array
+          items:
+            type: object
+            properties:
+              productId:
+                type: string
+              fillRate:
+                type: number
+                format: double
+    InventoryInsightsResponse:
+      type: object
+      properties:
+        asOf:
+          type: string
+          format: date
+        warehouseId:
+          type: string
+        totalSkus:
+          type: integer
+        voidedSkus:
+          type: integer
+        foodWasteValue:
+          type: number
+          format: double
+        lowStockItems:
+          type: array
+          items:
+            type: object
+            properties:
+              productId:
+                type: string
+              currentStock:
+                type: integer
+              reorderPoint:
+                type: integer
+    Supplier:
+      type: object
+      properties:
+        supplierId:
+          type: string
+        name:
+          type: string
+        contact:
+          type: object
+          properties:
+            name:
+              type: string
+            email:
+              type: string
+            phone:
+              type: string
+        warehouses:
+          type: array
+          items:
+            type: object
+            properties:
+              warehouseId:
+                type: string
+              name:
+                type: string
+              address:
+                type: string
+        brokers:
+          type: array
+          items:
+            type: object
+            properties:
+              brokerId:
+                type: string
+              name:
+                type: string
+              region:
+                type: string
+    SupplierUpdateRequest:
+      type: object
+      properties:
+        contact:
+          type: object
+          properties:
+            name:
+              type: string
+            email:
+              type: string
+            phone:
+              type: string
+        warehouses:
+          type: array
+          items:
+            type: object
+            properties:
+              warehouseId:
+                type: string
+              name:
+                type: string
+              address:
+                type: string
+    Error:
+      type: object
+      properties:
+        code:
+          type: string
+        message:
+          type: string
+  responses:
+    BadRequest:
+      description: Invalid request parameters
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    Unauthorized:
+      description: Authentication required
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    NotFound:
+      description: Resource not found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'

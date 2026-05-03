@@ -1,0 +1,52 @@
+{
+  "request": {
+    "method": "GET",
+    "path": "/v1/orders",
+    "headers": {
+      "X-API-Key": "unfi_sk_prod_abc123xyz"
+    },
+    "query": {
+      "status": "pending",
+      "startDate": "2026-05-01",
+      "endDate": "2026-05-31"
+    }
+  },
+  "response": {
+    "status": 200,
+    "headers": {
+      "Content-Type": "application/json"
+    },
+    "body": [
+      {
+        "orderId": "PO-2026-05-00142",
+        "purchaseOrderNumber": "PO-2026-05-00142",
+        "status": "pending",
+        "supplierId": "SUPP-GardenEatin",
+        "warehouseId": "WH-NORTHEAST-01",
+        "orderDate": "2026-05-01",
+        "requiredDeliveryDate": "2026-05-10",
+        "lineItems": [
+          {
+            "lineId": "LI-001",
+            "productId": "UNFI-0012345",
+            "upc": "012345678901",
+            "quantityOrdered": 240,
+            "quantityShipped": 0,
+            "unitCost": 2.85,
+            "totalCost": 684.00
+          },
+          {
+            "lineId": "LI-002",
+            "productId": "UNFI-0023456",
+            "upc": "023456789012",
+            "quantityOrdered": 120,
+            "quantityShipped": 0,
+            "unitCost": 2.15,
+            "totalCost": 258.00
+          }
+        ],
+        "totalAmount": 942.00
+      }
+    ]
+  }
+}

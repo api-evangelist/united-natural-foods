@@ -1,0 +1,59 @@
+{
+  "@context": {
+    "@version": 1.1,
+    "unfi": "https://schema.unfi.com/",
+    "schema": "https://schema.org/",
+    "gs1": "https://www.gs1.org/voc/",
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+
+    "Product": {
+      "@id": "schema:Product",
+      "@type": "@id"
+    },
+    "FoodProduct": {
+      "@id": "unfi:FoodProduct",
+      "@type": "@id",
+      "subClassOf": "schema:Product"
+    },
+    "productId": { "@id": "unfi:productId", "@type": "xsd:string" },
+    "upc": { "@id": "gs1:gtin12", "@type": "xsd:string" },
+    "gtin": { "@id": "gs1:gtin14", "@type": "xsd:string" },
+    "name": { "@id": "schema:name", "@type": "xsd:string" },
+    "brand": { "@id": "schema:brand", "@type": "xsd:string" },
+    "description": { "@id": "schema:description", "@type": "xsd:string" },
+    "category": { "@id": "schema:category", "@type": "xsd:string" },
+    "certifications": { "@id": "unfi:hasCertification", "@type": "xsd:string", "@container": "@set" },
+    "unitSize": { "@id": "gs1:netContent", "@type": "xsd:string" },
+    "unitsPerCase": { "@id": "gs1:quantityOfLayers", "@type": "xsd:integer" },
+    "retailPrice": { "@id": "schema:price", "@type": "xsd:decimal" },
+    "status": { "@id": "schema:itemCondition", "@type": "xsd:string" },
+
+    "PurchaseOrder": {
+      "@id": "unfi:PurchaseOrder",
+      "@type": "@id",
+      "subClassOf": "schema:Order"
+    },
+    "orderId": { "@id": "schema:orderNumber", "@type": "xsd:string" },
+    "purchaseOrderNumber": { "@id": "unfi:purchaseOrderNumber", "@type": "xsd:string" },
+    "orderDate": { "@id": "schema:orderDate", "@type": "xsd:date" },
+    "requiredDeliveryDate": { "@id": "unfi:requiredDeliveryDate", "@type": "xsd:date" },
+    "supplierId": { "@id": "unfi:supplierId", "@type": "xsd:string" },
+    "warehouseId": { "@id": "unfi:warehouseId", "@type": "xsd:string" },
+    "totalAmount": { "@id": "schema:totalPrice", "@type": "xsd:decimal" },
+
+    "Supplier": {
+      "@id": "unfi:Supplier",
+      "@type": "@id",
+      "subClassOf": "schema:Organization"
+    },
+    "lineItems": { "@id": "unfi:hasLineItem", "@type": "@id", "@container": "@list" },
+
+    "SalesInsight": {
+      "@id": "unfi:SalesInsight",
+      "@type": "@id"
+    },
+    "totalSales": { "@id": "unfi:totalSales", "@type": "xsd:decimal" },
+    "unitsSold": { "@id": "unfi:unitsSold", "@type": "xsd:integer" },
+    "fillRate": { "@id": "unfi:fillRate", "@type": "xsd:decimal" }
+  }
+}

@@ -1,0 +1,58 @@
+{
+  "request": {
+    "method": "GET",
+    "path": "/v1/products",
+    "headers": {
+      "X-API-Key": "unfi_sk_prod_abc123xyz"
+    },
+    "query": {
+      "category": "Snacks",
+      "certification": "organic",
+      "page": 1,
+      "pageSize": 20
+    }
+  },
+  "response": {
+    "status": 200,
+    "headers": {
+      "Content-Type": "application/json"
+    },
+    "body": {
+      "products": [
+        {
+          "productId": "UNFI-0012345",
+          "upc": "012345678901",
+          "gtin": "00012345678901",
+          "name": "Organic Tortilla Chips Sea Salt",
+          "brand": "Garden of Eatin",
+          "description": "Certified organic tortilla chips made with yellow corn",
+          "category": "Snacks",
+          "subCategory": "Chips",
+          "certifications": ["organic", "non-gmo"],
+          "unitSize": "7 oz",
+          "unitsPerCase": 12,
+          "retailPrice": 4.99,
+          "status": "active"
+        },
+        {
+          "productId": "UNFI-0023456",
+          "upc": "023456789012",
+          "gtin": "00023456789012",
+          "name": "Organic Veggie Straws",
+          "brand": "Sensible Portions",
+          "description": "Organic veggie straws made with real vegetables",
+          "category": "Snacks",
+          "subCategory": "Chips",
+          "certifications": ["organic"],
+          "unitSize": "5 oz",
+          "unitsPerCase": 12,
+          "retailPrice": 3.79,
+          "status": "active"
+        }
+      ],
+      "total": 247,
+      "page": 1,
+      "pageSize": 20
+    }
+  }
+}

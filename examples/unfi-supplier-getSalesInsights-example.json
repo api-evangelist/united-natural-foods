@@ -1,0 +1,65 @@
+{
+  "request": {
+    "method": "GET",
+    "path": "/v1/insights/sales",
+    "headers": {
+      "X-API-Key": "unfi_sk_prod_abc123xyz"
+    },
+    "query": {
+      "startDate": "2026-01-01",
+      "endDate": "2026-03-31",
+      "granularity": "monthly",
+      "region": "all"
+    }
+  },
+  "response": {
+    "status": 200,
+    "headers": {
+      "Content-Type": "application/json"
+    },
+    "body": {
+      "period": "2026-Q1",
+      "region": "all",
+      "totalSales": 1450320.75,
+      "unitsSold": 289064,
+      "topProducts": [
+        {
+          "productId": "UNFI-0012345",
+          "name": "Organic Tortilla Chips Sea Salt",
+          "sales": 48620.00,
+          "unitsSOld": 9724
+        },
+        {
+          "productId": "UNFI-0023456",
+          "name": "Organic Veggie Straws",
+          "sales": 37420.50,
+          "unitsSOld": 9873
+        },
+        {
+          "productId": "UNFI-0034567",
+          "name": "Organic Almond Butter",
+          "sales": 35100.00,
+          "unitsSOld": 5850
+        }
+      ],
+      "categoryBreakdown": [
+        {
+          "category": "Snacks",
+          "sales": 412000.00
+        },
+        {
+          "category": "Beverages",
+          "sales": 298500.00
+        },
+        {
+          "category": "Frozen Foods",
+          "sales": 187200.00
+        },
+        {
+          "category": "Dairy & Alternatives",
+          "sales": 165000.00
+        }
+      ]
+    }
+  }
+}

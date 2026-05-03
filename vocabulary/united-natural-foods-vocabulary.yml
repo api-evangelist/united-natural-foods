@@ -1,0 +1,96 @@
+vocabulary:
+  name: UNFI Supplier Vocabulary
+  description: Domain vocabulary for United Natural Foods (UNFI) covering food distribution, supply chain, supplier management, and analytics.
+  version: 1.0.0
+  created: '2026-05-03'
+  modified: '2026-05-03'
+
+terms:
+  - term: WholesaleDistributor
+    label: Wholesale Distributor
+    definition: A company that buys products from manufacturers and sells them in bulk to retailers. UNFI is the largest publicly traded wholesale distributor of natural and specialty food.
+    domain: Business Model
+
+  - term: SKU
+    label: Stock Keeping Unit
+    definition: A unique identifier for a product variant in inventory management. Each distinct product size and configuration has its own SKU in the UNFI catalog.
+    domain: Products
+    related: [UPC, GTIN]
+
+  - term: UPC
+    label: Universal Product Code
+    definition: A 12-digit barcode identifier for consumer products standardized by GS1. Required for all products in the UNFI catalog.
+    domain: Products
+    related: [GTIN, SKU]
+
+  - term: GTIN
+    label: Global Trade Item Number
+    definition: A 14-digit GS1 identifier used in the Global Data Synchronization Network (GDSN) for product data exchange. Supersedes UPC in international trade.
+    domain: Products
+    related: [UPC, GDSN]
+
+  - term: GDSN
+    label: Global Data Synchronization Network
+    definition: GS1-managed network for product data synchronization between suppliers and retailers. UNFI uses GDSN for product catalog submissions.
+    domain: Standards
+
+  - term: FillRate
+    label: Fill Rate
+    definition: Percentage of ordered units that are actually shipped and delivered. A key supplier performance metric tracked in UNFI Insights.
+    domain: Analytics
+
+  - term: Void
+    label: Product Void
+    definition: A product listed in a retailer's assortment but currently unavailable (out of stock). UNFI Insights tracks voids for inventory optimization.
+    domain: Analytics
+
+  - term: myUNFI
+    label: myUNFI
+    definition: UNFI's customer-facing digital portal for retailers to manage orders, review analytics, and access tools. Available at myunfi.com.
+    domain: Platform
+
+  - term: SupplierPortal
+    label: Supplier Portal
+    definition: UNFI's digital portal for suppliers to manage product listings, purchase orders, contacts, warehouses, and brokers. Available at suppliers.unfi.com.
+    domain: Platform
+
+  - term: HarmonyCore
+    label: Harmony Core API
+    definition: UNFI's API platform providing read-only access to 42 data files with SQL-style query capabilities. Used by analytics platforms like Crisp to access UNFI Insights.
+    domain: Technology
+
+  - term: EDI
+    label: Electronic Data Interchange
+    definition: Standardized format for automated exchange of business documents (purchase orders, invoices, ASNs) between UNFI and trading partners.
+    domain: Integration
+
+  - term: Broker
+    label: Broker
+    definition: A sales representative or agency that manages the relationship between a food brand (supplier) and distributors like UNFI on their behalf.
+    domain: Business Model
+
+  - term: NaturalChannel
+    label: Natural Channel
+    definition: Distribution network focused on natural, organic, and specialty food retailers. UNFI's legacy western distribution network.
+    domain: Distribution
+
+  - term: ConventionalChannel
+    label: Conventional Channel
+    definition: Distribution network serving conventional grocery retailers. UNFI's eastern distribution network acquired from SuperValu.
+    domain: Distribution
+
+  - term: Deduction
+    label: Deduction
+    definition: An amount withheld from payment by a retailer or deducted from a supplier's invoice, often for promotional allowances, damages, or shortages.
+    domain: Finance
+
+  - term: FoodWaste
+    label: Food Waste
+    definition: Products in the distribution chain that are discarded due to expiration, damage, or unsaleability. UNFI's Insights dashboard tracks food waste metrics for sustainability.
+    domain: Sustainability
+
+  - term: Certification
+    label: Product Certification
+    definition: A third-party verification that a product meets specific standards. UNFI tracks certifications including organic (USDA), Non-GMO Project Verified, kosher, gluten-free, vegan, and fair-trade.
+    domain: Products
+    values: [organic, non-gmo, kosher, gluten-free, vegan, fair-trade]
