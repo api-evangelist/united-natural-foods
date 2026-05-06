@@ -1,314 +1,579 @@
-naftiko: "1.0.0-alpha1"
-
+naftiko: 1.0.0-alpha2
 info:
-  label: "UNFI Supplier Management"
-  description: >-
-    United Natural Foods (UNFI) supplier management capability combining product catalog,
-    purchase order management, fulfillment tracking, and supply chain analytics.
-    Used by suppliers, retailers, and data analytics partners connecting to the UNFI
-    distribution network.
+  label: UNFI Supplier Management
+  description: United Natural Foods (UNFI) supplier management capability combining product catalog, purchase order management,
+    fulfillment tracking, and supply chain analytics. Used by suppliers, retailers, and data analytics partners connecting
+    to the UNFI distribution network.
   tags:
-    - Food Distribution
-    - Supply Chain
-    - Supplier Portal
-    - Analytics
-    - Natural Foods
-    - Wholesale
-  created: "2026-05-03"
-  modified: "2026-05-03"
-
+  - Food Distribution
+  - Supply Chain
+  - Supplier Portal
+  - Analytics
+  - Natural Foods
+  - Wholesale
+  created: '2026-05-03'
+  modified: '2026-05-06'
 binds:
-  - namespace: env
-    keys:
-      UNFI_API_KEY: UNFI_API_KEY
-
+- namespace: env
+  keys:
+    UNFI_API_KEY: UNFI_API_KEY
 capability:
   consumes:
-    - import: unfi-supplier
-      location: ./shared/unfi-supplier.yaml
-
+  - type: http
+    namespace: unfi-supplier
+    baseUri: https://api.unfi.com/v1
+    description: UNFI Supplier and Data API for product, order, and insights management.
+    authentication:
+      type: apikey
+      key: X-API-Key
+      value: '{{UNFI_API_KEY}}'
+      placement: header
+    resources:
+    - name: products
+      path: /products
+      description: Product catalog management
+      operations:
+      - name: list-products
+        method: GET
+        description: Retrieve paginated list of products in UNFI catalog
+        inputParameters:
+        - name: category
+          in: query
+          type: string
+          required: false
+          description: Product category filter
+        - name: certification
+          in: query
+          type: string
+          required: false
+          description: Filter by certification (organic, non-gmo, etc.)
+        - name: page
+          in: query
+          type: integer
+          required: false
+          description: Page number
+        - name: pageSize
+          in: query
+          type: integer
+          required: false
+          description: Results per page
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: create-product
+        method: POST
+        description: Submit a new product listing to UNFI catalog
+        inputParameters:
+        - name: upc
+          in: body
+          type: string
+          required: true
+          description: Universal Product Code
+        - name: name
+          in: body
+          type: string
+          required: true
+          description: Product name
+        - name: brand
+          in: body
+          type: string
+          required: true
+          description: Brand name
+        - name: category
+          in: body
+          type: string
+          required: true
+          description: Product category
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: get-product
+        method: GET
+        description: Retrieve details for a specific product
+        inputParameters:
+        - name: productId
+          in: path
+          type: string
+          required: true
+          description: UNFI product identifier
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: update-product
+        method: PUT
+        description: Update an existing product listing
+        inputParameters:
+        - name: productId
+          in: path
+          type: string
+          required: true
+          description: UNFI product identifier
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: orders
+      path: /orders
+      description: Purchase order management
+      operations:
+      - name: list-orders
+        method: GET
+        description: Retrieve purchase orders for the account
+        inputParameters:
+        - name: status
+          in: query
+          type: string
+          required: false
+          description: Filter by order status
+        - name: startDate
+          in: query
+          type: string
+          required: false
+          description: Start date filter
+        - name: endDate
+          in: query
+          type: string
+          required: false
+          description: End date filter
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: get-order
+        method: GET
+        description: Retrieve details for a specific purchase order
+        inputParameters:
+        - name: orderId
+          in: path
+          type: string
+          required: true
+          description: Purchase order identifier
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: submit-fulfillment
+        method: POST
+        description: Submit fulfillment information for a purchase order
+        inputParameters:
+        - name: orderId
+          in: path
+          type: string
+          required: true
+          description: Purchase order identifier
+        - name: shipDate
+          in: body
+          type: string
+          required: true
+          description: Ship date
+        - name: carrier
+          in: body
+          type: string
+          required: true
+          description: Carrier name
+        - name: trackingNumber
+          in: body
+          type: string
+          required: true
+          description: Tracking number
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: insights
+      path: /insights
+      description: Supply chain analytics and reporting
+      operations:
+      - name: get-sales-insights
+        method: GET
+        description: Retrieve sales analytics across UNFI distribution network
+        inputParameters:
+        - name: startDate
+          in: query
+          type: string
+          required: true
+          description: Start date for insights query
+        - name: endDate
+          in: query
+          type: string
+          required: true
+          description: End date for insights query
+        - name: granularity
+          in: query
+          type: string
+          required: false
+          description: Data aggregation granularity
+        - name: region
+          in: query
+          type: string
+          required: false
+          description: Distribution region (east, west, all)
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: get-fill-rates
+        method: GET
+        description: Retrieve fill rate metrics for supplier products
+        inputParameters:
+        - name: startDate
+          in: query
+          type: string
+          required: true
+          description: Start date
+        - name: endDate
+          in: query
+          type: string
+          required: true
+          description: End date
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: get-inventory-insights
+        method: GET
+        description: Retrieve inventory levels, voids, and food waste data
+        inputParameters:
+        - name: warehouseId
+          in: query
+          type: string
+          required: false
+          description: Filter by UNFI warehouse
+        - name: asOf
+          in: query
+          type: string
+          required: false
+          description: Inventory snapshot date
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: suppliers
+      path: /suppliers
+      description: Supplier profile management
+      operations:
+      - name: get-supplier
+        method: GET
+        description: Retrieve supplier profile
+        inputParameters:
+        - name: supplierId
+          in: path
+          type: string
+          required: true
+          description: UNFI supplier identifier
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: update-supplier
+        method: PUT
+        description: Update supplier contact and warehouse information
+        inputParameters:
+        - name: supplierId
+          in: path
+          type: string
+          required: true
+          description: UNFI supplier identifier
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
   exposes:
-    - type: rest
-      port: 8080
-      namespace: unfi-supplier-management-api
-      description: "Unified REST API for UNFI supplier and supply chain management."
-      resources:
-        - path: /v1/products
-          name: products
-          description: "Product catalog management"
-          operations:
-            - method: GET
-              name: list-products
-              description: "List products in UNFI catalog"
-              call: "unfi-supplier.list-products"
-              with:
-                category: "rest.category"
-                certification: "rest.certification"
-                page: "rest.page"
-                pageSize: "rest.pageSize"
-              outputParameters:
-                - type: object
-                  mapping: "$."
-            - method: POST
-              name: create-product
-              description: "Submit a new product to UNFI catalog"
-              call: "unfi-supplier.create-product"
-              outputParameters:
-                - type: object
-                  mapping: "$."
-        - path: /v1/products/{id}
-          name: product
-          description: "Individual product operations"
-          operations:
-            - method: GET
-              name: get-product
-              description: "Get product details"
-              call: "unfi-supplier.get-product"
-              with:
-                productId: "rest.id"
-              outputParameters:
-                - type: object
-                  mapping: "$."
-            - method: PUT
-              name: update-product
-              description: "Update product listing"
-              call: "unfi-supplier.update-product"
-              with:
-                productId: "rest.id"
-              outputParameters:
-                - type: object
-                  mapping: "$."
-        - path: /v1/orders
-          name: orders
-          description: "Purchase order management"
-          operations:
-            - method: GET
-              name: list-orders
-              description: "List purchase orders"
-              call: "unfi-supplier.list-orders"
-              with:
-                status: "rest.status"
-                startDate: "rest.startDate"
-                endDate: "rest.endDate"
-              outputParameters:
-                - type: object
-                  mapping: "$."
-        - path: /v1/orders/{id}
-          name: order
-          description: "Individual order operations"
-          operations:
-            - method: GET
-              name: get-order
-              description: "Get order details"
-              call: "unfi-supplier.get-order"
-              with:
-                orderId: "rest.id"
-              outputParameters:
-                - type: object
-                  mapping: "$."
-        - path: /v1/orders/{id}/fulfillment
-          name: order-fulfillment
-          description: "Order fulfillment submission"
-          operations:
-            - method: POST
-              name: submit-fulfillment
-              description: "Submit shipment and tracking details"
-              call: "unfi-supplier.submit-fulfillment"
-              with:
-                orderId: "rest.id"
-              outputParameters:
-                - type: object
-                  mapping: "$."
-        - path: /v1/insights/sales
-          name: sales-insights
-          description: "Sales analytics and reporting"
-          operations:
-            - method: GET
-              name: get-sales-insights
-              description: "Get sales data across UNFI network"
-              call: "unfi-supplier.get-sales-insights"
-              with:
-                startDate: "rest.startDate"
-                endDate: "rest.endDate"
-                granularity: "rest.granularity"
-                region: "rest.region"
-              outputParameters:
-                - type: object
-                  mapping: "$."
-        - path: /v1/insights/fill-rates
-          name: fill-rates
-          description: "Fill rate metrics"
-          operations:
-            - method: GET
-              name: get-fill-rates
-              description: "Get fill rate metrics by product"
-              call: "unfi-supplier.get-fill-rates"
-              with:
-                startDate: "rest.startDate"
-                endDate: "rest.endDate"
-              outputParameters:
-                - type: object
-                  mapping: "$."
-        - path: /v1/insights/inventory
-          name: inventory-insights
-          description: "Inventory and waste analytics"
-          operations:
-            - method: GET
-              name: get-inventory-insights
-              description: "Get inventory levels and food waste data"
-              call: "unfi-supplier.get-inventory-insights"
-              with:
-                warehouseId: "rest.warehouseId"
-                asOf: "rest.asOf"
-              outputParameters:
-                - type: object
-                  mapping: "$."
-
-    - type: mcp
-      port: 9080
-      namespace: unfi-supplier-management-mcp
-      transport: http
-      description: "MCP server for AI-assisted UNFI supplier and supply chain management."
-      tools:
-        - name: list-products
-          description: "Browse the UNFI product catalog with filters for category, brand, and certification"
-          hints:
-            readOnly: true
-            openWorld: true
-          call: "unfi-supplier.list-products"
-          with:
-            category: "tools.category"
-            certification: "tools.certification"
-            page: "tools.page"
-            pageSize: "tools.pageSize"
-          outputParameters:
-            - type: object
-              mapping: "$."
-        - name: create-product
-          description: "Submit a new product listing to the UNFI catalog"
-          hints:
-            readOnly: false
-            destructive: false
-          call: "unfi-supplier.create-product"
-          outputParameters:
-            - type: object
-              mapping: "$."
-        - name: get-product
-          description: "Get details for a specific UNFI product"
-          hints:
-            readOnly: true
-            openWorld: false
-          call: "unfi-supplier.get-product"
-          with:
-            productId: "tools.productId"
-          outputParameters:
-            - type: object
-              mapping: "$."
-        - name: update-product
-          description: "Update an existing product listing in the UNFI catalog"
-          hints:
-            readOnly: false
-            destructive: false
-            idempotent: true
-          call: "unfi-supplier.update-product"
-          with:
-            productId: "tools.productId"
-          outputParameters:
-            - type: object
-              mapping: "$."
-        - name: list-orders
-          description: "List purchase orders with status and date filters"
-          hints:
-            readOnly: true
-            openWorld: false
-          call: "unfi-supplier.list-orders"
-          with:
-            status: "tools.status"
-            startDate: "tools.startDate"
-            endDate: "tools.endDate"
-          outputParameters:
-            - type: object
-              mapping: "$."
-        - name: get-order
-          description: "Get details for a specific UNFI purchase order"
-          hints:
-            readOnly: true
-            openWorld: false
-          call: "unfi-supplier.get-order"
-          with:
-            orderId: "tools.orderId"
-          outputParameters:
-            - type: object
-              mapping: "$."
-        - name: submit-fulfillment
-          description: "Submit shipment tracking and fulfillment details for an order"
-          hints:
-            readOnly: false
-            destructive: false
-          call: "unfi-supplier.submit-fulfillment"
-          with:
-            orderId: "tools.orderId"
-          outputParameters:
-            - type: object
-              mapping: "$."
-        - name: get-sales-insights
-          description: "Retrieve sales analytics across UNFI's national distribution network"
-          hints:
-            readOnly: true
-            openWorld: false
-          call: "unfi-supplier.get-sales-insights"
-          with:
-            startDate: "tools.startDate"
-            endDate: "tools.endDate"
-            granularity: "tools.granularity"
-            region: "tools.region"
-          outputParameters:
-            - type: object
-              mapping: "$."
-        - name: get-fill-rates
-          description: "Get fill rate performance metrics for supplier products"
-          hints:
-            readOnly: true
-            openWorld: false
-          call: "unfi-supplier.get-fill-rates"
-          with:
-            startDate: "tools.startDate"
-            endDate: "tools.endDate"
-          outputParameters:
-            - type: object
-              mapping: "$."
-        - name: get-inventory-insights
-          description: "Get inventory levels, voids, and food waste dashboard data"
-          hints:
-            readOnly: true
-            openWorld: false
-          call: "unfi-supplier.get-inventory-insights"
-          with:
-            warehouseId: "tools.warehouseId"
-            asOf: "tools.asOf"
-          outputParameters:
-            - type: object
-              mapping: "$."
-        - name: get-supplier
-          description: "Retrieve supplier profile including contacts and warehouses"
-          hints:
-            readOnly: true
-            openWorld: false
-          call: "unfi-supplier.get-supplier"
-          with:
-            supplierId: "tools.supplierId"
-          outputParameters:
-            - type: object
-              mapping: "$."
-        - name: update-supplier
-          description: "Update supplier contact and warehouse information"
-          hints:
-            readOnly: false
-            destructive: false
-            idempotent: true
-          call: "unfi-supplier.update-supplier"
-          with:
-            supplierId: "tools.supplierId"
-          outputParameters:
-            - type: object
-              mapping: "$."
+  - type: rest
+    port: 8080
+    namespace: unfi-supplier-management-api
+    description: Unified REST API for UNFI supplier and supply chain management.
+    resources:
+    - path: /v1/products
+      name: products
+      description: Product catalog management
+      operations:
+      - method: GET
+        name: list-products
+        description: List products in UNFI catalog
+        call: unfi-supplier.list-products
+        with:
+          category: rest.category
+          certification: rest.certification
+          page: rest.page
+          pageSize: rest.pageSize
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: create-product
+        description: Submit a new product to UNFI catalog
+        call: unfi-supplier.create-product
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/products/{id}
+      name: product
+      description: Individual product operations
+      operations:
+      - method: GET
+        name: get-product
+        description: Get product details
+        call: unfi-supplier.get-product
+        with:
+          productId: rest.id
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: PUT
+        name: update-product
+        description: Update product listing
+        call: unfi-supplier.update-product
+        with:
+          productId: rest.id
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/orders
+      name: orders
+      description: Purchase order management
+      operations:
+      - method: GET
+        name: list-orders
+        description: List purchase orders
+        call: unfi-supplier.list-orders
+        with:
+          status: rest.status
+          startDate: rest.startDate
+          endDate: rest.endDate
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/orders/{id}
+      name: order
+      description: Individual order operations
+      operations:
+      - method: GET
+        name: get-order
+        description: Get order details
+        call: unfi-supplier.get-order
+        with:
+          orderId: rest.id
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/orders/{id}/fulfillment
+      name: order-fulfillment
+      description: Order fulfillment submission
+      operations:
+      - method: POST
+        name: submit-fulfillment
+        description: Submit shipment and tracking details
+        call: unfi-supplier.submit-fulfillment
+        with:
+          orderId: rest.id
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/insights/sales
+      name: sales-insights
+      description: Sales analytics and reporting
+      operations:
+      - method: GET
+        name: get-sales-insights
+        description: Get sales data across UNFI network
+        call: unfi-supplier.get-sales-insights
+        with:
+          startDate: rest.startDate
+          endDate: rest.endDate
+          granularity: rest.granularity
+          region: rest.region
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/insights/fill-rates
+      name: fill-rates
+      description: Fill rate metrics
+      operations:
+      - method: GET
+        name: get-fill-rates
+        description: Get fill rate metrics by product
+        call: unfi-supplier.get-fill-rates
+        with:
+          startDate: rest.startDate
+          endDate: rest.endDate
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/insights/inventory
+      name: inventory-insights
+      description: Inventory and waste analytics
+      operations:
+      - method: GET
+        name: get-inventory-insights
+        description: Get inventory levels and food waste data
+        call: unfi-supplier.get-inventory-insights
+        with:
+          warehouseId: rest.warehouseId
+          asOf: rest.asOf
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    port: 9080
+    namespace: unfi-supplier-management-mcp
+    transport: http
+    description: MCP server for AI-assisted UNFI supplier and supply chain management.
+    tools:
+    - name: list-products
+      description: Browse the UNFI product catalog with filters for category, brand, and certification
+      hints:
+        readOnly: true
+        openWorld: true
+      call: unfi-supplier.list-products
+      with:
+        category: tools.category
+        certification: tools.certification
+        page: tools.page
+        pageSize: tools.pageSize
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: create-product
+      description: Submit a new product listing to the UNFI catalog
+      hints:
+        readOnly: false
+        destructive: false
+      call: unfi-supplier.create-product
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-product
+      description: Get details for a specific UNFI product
+      hints:
+        readOnly: true
+        openWorld: false
+      call: unfi-supplier.get-product
+      with:
+        productId: tools.productId
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: update-product
+      description: Update an existing product listing in the UNFI catalog
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: unfi-supplier.update-product
+      with:
+        productId: tools.productId
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: list-orders
+      description: List purchase orders with status and date filters
+      hints:
+        readOnly: true
+        openWorld: false
+      call: unfi-supplier.list-orders
+      with:
+        status: tools.status
+        startDate: tools.startDate
+        endDate: tools.endDate
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-order
+      description: Get details for a specific UNFI purchase order
+      hints:
+        readOnly: true
+        openWorld: false
+      call: unfi-supplier.get-order
+      with:
+        orderId: tools.orderId
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: submit-fulfillment
+      description: Submit shipment tracking and fulfillment details for an order
+      hints:
+        readOnly: false
+        destructive: false
+      call: unfi-supplier.submit-fulfillment
+      with:
+        orderId: tools.orderId
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-sales-insights
+      description: Retrieve sales analytics across UNFI's national distribution network
+      hints:
+        readOnly: true
+        openWorld: false
+      call: unfi-supplier.get-sales-insights
+      with:
+        startDate: tools.startDate
+        endDate: tools.endDate
+        granularity: tools.granularity
+        region: tools.region
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-fill-rates
+      description: Get fill rate performance metrics for supplier products
+      hints:
+        readOnly: true
+        openWorld: false
+      call: unfi-supplier.get-fill-rates
+      with:
+        startDate: tools.startDate
+        endDate: tools.endDate
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-inventory-insights
+      description: Get inventory levels, voids, and food waste dashboard data
+      hints:
+        readOnly: true
+        openWorld: false
+      call: unfi-supplier.get-inventory-insights
+      with:
+        warehouseId: tools.warehouseId
+        asOf: tools.asOf
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-supplier
+      description: Retrieve supplier profile including contacts and warehouses
+      hints:
+        readOnly: true
+        openWorld: false
+      call: unfi-supplier.get-supplier
+      with:
+        supplierId: tools.supplierId
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: update-supplier
+      description: Update supplier contact and warehouse information
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: unfi-supplier.update-supplier
+      with:
+        supplierId: tools.supplierId
+      outputParameters:
+      - type: object
+        mapping: $.
