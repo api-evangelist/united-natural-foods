@@ -1,0 +1,223 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: UNFI Supplier and Data API — Products
+  description: 'UNFI Supplier and Data API — Products. 4 operations. Lead operation: List Products. Self-contained Naftiko
+    capability covering one United Natural Foods business surface.'
+  tags:
+  - United Natural Foods
+  - Products
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    UNITED_NATURAL_FOODS_API_KEY: UNITED_NATURAL_FOODS_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: unfi-supplier-products
+    baseUri: https://api.unfi.com/v1
+    description: UNFI Supplier and Data API — Products business capability. Self-contained, no shared references.
+    resources:
+    - name: products
+      path: /products
+      operations:
+      - name: listproducts
+        method: GET
+        description: List Products
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: category
+          in: query
+          type: string
+          description: Product category filter
+        - name: brand
+          in: query
+          type: string
+          description: Brand name filter
+        - name: certification
+          in: query
+          type: string
+          description: Filter by product certification
+        - name: page
+          in: query
+          type: integer
+          description: Page number for pagination
+        - name: pageSize
+          in: query
+          type: integer
+          description: Number of results per page
+      - name: createproduct
+        method: POST
+        description: Create Product
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: products-productId
+      path: /products/{productId}
+      operations:
+      - name: getproduct
+        method: GET
+        description: Get Product
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: productId
+          in: path
+          type: string
+          description: UNFI product identifier
+          required: true
+      - name: updateproduct
+        method: PUT
+        description: Update Product
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: productId
+          in: path
+          type: string
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    authentication:
+      type: apikey
+      key: X-API-Key
+      value: '{{env.UNITED_NATURAL_FOODS_API_KEY}}'
+      placement: header
+  exposes:
+  - type: rest
+    namespace: unfi-supplier-products-rest
+    port: 8080
+    description: REST adapter for UNFI Supplier and Data API — Products. One Spectral-compliant resource per consumed operation,
+      prefixed with /v1.
+    resources:
+    - path: /v1/products
+      name: products
+      description: REST surface for products.
+      operations:
+      - method: GET
+        name: listproducts
+        description: List Products
+        call: unfi-supplier-products.listproducts
+        with:
+          category: rest.category
+          brand: rest.brand
+          certification: rest.certification
+          page: rest.page
+          pageSize: rest.pageSize
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: createproduct
+        description: Create Product
+        call: unfi-supplier-products.createproduct
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/products/{productid}
+      name: products-productid
+      description: REST surface for products-productId.
+      operations:
+      - method: GET
+        name: getproduct
+        description: Get Product
+        call: unfi-supplier-products.getproduct
+        with:
+          productId: rest.productId
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: PUT
+        name: updateproduct
+        description: Update Product
+        call: unfi-supplier-products.updateproduct
+        with:
+          productId: rest.productId
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: unfi-supplier-products-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for UNFI Supplier and Data API — Products. One tool per consumed operation, routed inline through
+      this capability's consumes block.
+    tools:
+    - name: list-products
+      description: List Products
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: unfi-supplier-products.listproducts
+      with:
+        category: tools.category
+        brand: tools.brand
+        certification: tools.certification
+        page: tools.page
+        pageSize: tools.pageSize
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: create-product
+      description: Create Product
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: unfi-supplier-products.createproduct
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-product
+      description: Get Product
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: unfi-supplier-products.getproduct
+      with:
+        productId: tools.productId
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: update-product
+      description: Update Product
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: unfi-supplier-products.updateproduct
+      with:
+        productId: tools.productId
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
