@@ -8,7 +8,7 @@ description: >-
   the United States and Canada. UNFI supplies natural, organic, specialty, and conventional foods to over 30,000 retail
   locations. UNFI provides digital supplier and customer portals including myUNFI, supplier portal, EDI integration, and
   the Harmony Core API for data access.
-image: https://kinlane-productions2.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
 tags:
   - Food Distribution
   - Wholesale
@@ -22,7 +22,7 @@ apis:
       sales data across UNFI's distribution network. Consumers can perform SQL-style queries including field selection
       and multi-table joins. Used by suppliers, retailers, and analytics platforms like Crisp to access UNFI Insights
       data.
-    image: https://kinlane-productions2.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+    image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
     humanURL: https://suppliers.unfi.com
     baseURL: https://api.unfi.com/v1
     tags:
@@ -41,7 +41,7 @@ apis:
       UNFI supports Electronic Data Interchange (EDI) for automated exchanges of purchase orders, invoices, and
       fulfillment data between UNFI and its supplier and retail partners. EDI integration supports the procure-to-pay
       lifecycle for both suppliers and retailers.
-    image: https://kinlane-productions2.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+    image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
     humanURL: https://suppliers.unfi.com
     baseURL: https://api.unfi.com/v1
     tags:
