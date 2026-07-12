@@ -53,6 +53,10 @@ apis:
       - type: Documentation
         url: https://suppliers.unfi.com
 common:
+  - type: DomainSecurity
+    url: security/united-natural-foods-domain-security.yml
+  - type: Authentication
+    url: authentication/united-natural-foods-authentication.yml
   - type: Website
     url: https://www.unfi.com
   - type: Supplier Portal
