@@ -1,0 +1,169 @@
+openapi: 3.1.0
+info:
+  title: UNFI Supplier and Data Insights Suppliers API
+  description: United Natural Foods, Inc. (UNFI) provides APIs for suppliers, retailers, and data partners to interact with UNFI's distribution network. The UNFI API suite includes the Harmony Core API for read-only access to supply chain data files, the Supplier Portal API for product catalog and order management, and EDI integration for automated procure-to-pay workflows.
+  version: 1.0.0
+  contact:
+    name: UNFI Supplier Support
+    url: https://unfinc.zendesk.com/hc/en-us
+  termsOfService: https://suppliers.unfi.com
+servers:
+- url: https://api.unfi.com/v1
+  description: UNFI Production API
+tags:
+- name: Suppliers
+  description: Supplier profile and warehouse management
+paths:
+  /suppliers/{supplierId}:
+    get:
+      operationId: getSupplier
+      summary: Get Supplier Profile
+      description: Retrieve supplier profile including contact and warehouse information.
+      tags:
+      - Suppliers
+      parameters:
+      - name: supplierId
+        in: path
+        required: true
+        schema:
+          type: string
+        description: UNFI supplier identifier
+      responses:
+        '200':
+          description: Supplier profile returned
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Supplier'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+      security:
+      - ApiKeyAuth: []
+    put:
+      operationId: updateSupplier
+      summary: Update Supplier Profile
+      description: Update supplier contact, warehouse, and broker information.
+      tags:
+      - Suppliers
+      parameters:
+      - name: supplierId
+        in: path
+        required: true
+        schema:
+          type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SupplierUpdateRequest'
+      responses:
+        '200':
+          description: Supplier profile updated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Supplier'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+      security:
+      - ApiKeyAuth: []
+components:
+  schemas:
+    Error:
+      type: object
+      properties:
+        code:
+          type: string
+        message:
+          type: string
+    Supplier:
+      type: object
+      properties:
+        supplierId:
+          type: string
+        name:
+          type: string
+        contact:
+          type: object
+          properties:
+            name:
+              type: string
+            email:
+              type: string
+            phone:
+              type: string
+        warehouses:
+          type: array
+          items:
+            type: object
+            properties:
+              warehouseId:
+                type: string
+              name:
+                type: string
+              address:
+                type: string
+        brokers:
+          type: array
+          items:
+            type: object
+            properties:
+              brokerId:
+                type: string
+              name:
+                type: string
+              region:
+                type: string
+    SupplierUpdateRequest:
+      type: object
+      properties:
+        contact:
+          type: object
+          properties:
+            name:
+              type: string
+            email:
+              type: string
+            phone:
+              type: string
+        warehouses:
+          type: array
+          items:
+            type: object
+            properties:
+              warehouseId:
+                type: string
+              name:
+                type: string
+              address:
+                type: string
+  responses:
+    Unauthorized:
+      description: Authentication required
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    BadRequest:
+      description: Invalid request parameters
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    NotFound:
+      description: Resource not found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+  securitySchemes:
+    ApiKeyAuth:
+      type: apiKey
+      in: header
+      name: X-API-Key
+      description: UNFI supplier API key

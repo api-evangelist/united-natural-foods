@@ -1,0 +1,232 @@
+openapi: 3.1.0
+info:
+  title: UNFI Supplier and Data Insights Orders API
+  description: United Natural Foods, Inc. (UNFI) provides APIs for suppliers, retailers, and data partners to interact with UNFI's distribution network. The UNFI API suite includes the Harmony Core API for read-only access to supply chain data files, the Supplier Portal API for product catalog and order management, and EDI integration for automated procure-to-pay workflows.
+  version: 1.0.0
+  contact:
+    name: UNFI Supplier Support
+    url: https://unfinc.zendesk.com/hc/en-us
+  termsOfService: https://suppliers.unfi.com
+servers:
+- url: https://api.unfi.com/v1
+  description: UNFI Production API
+tags:
+- name: Orders
+  description: Purchase orders and fulfillment
+paths:
+  /orders:
+    get:
+      operationId: listOrders
+      summary: List Orders
+      description: Retrieve purchase orders for the supplier or retailer account.
+      tags:
+      - Orders
+      parameters:
+      - name: status
+        in: query
+        schema:
+          type: string
+          enum:
+          - pending
+          - confirmed
+          - shipped
+          - delivered
+          - cancelled
+        description: Filter by order status
+      - name: startDate
+        in: query
+        schema:
+          type: string
+          format: date
+        description: Start date filter
+      - name: endDate
+        in: query
+        schema:
+          type: string
+          format: date
+        description: End date filter
+      - name: warehouseId
+        in: query
+        schema:
+          type: string
+        description: Filter by UNFI warehouse
+      responses:
+        '200':
+          description: Orders returned successfully
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Order'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+      security:
+      - ApiKeyAuth: []
+  /orders/{orderId}:
+    get:
+      operationId: getOrder
+      summary: Get Order
+      description: Retrieve details for a specific purchase order.
+      tags:
+      - Orders
+      parameters:
+      - name: orderId
+        in: path
+        required: true
+        schema:
+          type: string
+        description: Purchase order identifier
+      responses:
+        '200':
+          description: Order details returned
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Order'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+      security:
+      - ApiKeyAuth: []
+  /orders/{orderId}/fulfillment:
+    post:
+      operationId: submitFulfillment
+      summary: Submit Order Fulfillment
+      description: Submit fulfillment information for a purchase order including ship date and tracking.
+      tags:
+      - Orders
+      parameters:
+      - name: orderId
+        in: path
+        required: true
+        schema:
+          type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/FulfillmentRequest'
+      responses:
+        '200':
+          description: Fulfillment submitted successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Order'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+      security:
+      - ApiKeyAuth: []
+components:
+  schemas:
+    Error:
+      type: object
+      properties:
+        code:
+          type: string
+        message:
+          type: string
+    OrderLineItem:
+      type: object
+      properties:
+        lineId:
+          type: string
+        productId:
+          type: string
+        upc:
+          type: string
+        quantityOrdered:
+          type: integer
+        quantityShipped:
+          type: integer
+        unitCost:
+          type: number
+          format: double
+        totalCost:
+          type: number
+          format: double
+    Order:
+      type: object
+      properties:
+        orderId:
+          type: string
+        purchaseOrderNumber:
+          type: string
+        status:
+          type: string
+          enum:
+          - pending
+          - confirmed
+          - shipped
+          - delivered
+          - cancelled
+        supplierId:
+          type: string
+        warehouseId:
+          type: string
+        orderDate:
+          type: string
+          format: date
+        requiredDeliveryDate:
+          type: string
+          format: date
+        lineItems:
+          type: array
+          items:
+            $ref: '#/components/schemas/OrderLineItem'
+        totalAmount:
+          type: number
+          format: double
+    FulfillmentRequest:
+      type: object
+      required:
+      - shipDate
+      - carrier
+      - trackingNumber
+      properties:
+        shipDate:
+          type: string
+          format: date
+        carrier:
+          type: string
+        trackingNumber:
+          type: string
+        lineItems:
+          type: array
+          items:
+            type: object
+            properties:
+              lineId:
+                type: string
+              quantityShipped:
+                type: integer
+  responses:
+    Unauthorized:
+      description: Authentication required
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    BadRequest:
+      description: Invalid request parameters
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    NotFound:
+      description: Resource not found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+  securitySchemes:
+    ApiKeyAuth:
+      type: apiKey
+      in: header
+      name: X-API-Key
+      description: UNFI supplier API key

@@ -1,0 +1,238 @@
+openapi: 3.1.0
+info:
+  title: UNFI Supplier and Data Insights API
+  description: United Natural Foods, Inc. (UNFI) provides APIs for suppliers, retailers, and data partners to interact with UNFI's distribution network. The UNFI API suite includes the Harmony Core API for read-only access to supply chain data files, the Supplier Portal API for product catalog and order management, and EDI integration for automated procure-to-pay workflows.
+  version: 1.0.0
+  contact:
+    name: UNFI Supplier Support
+    url: https://unfinc.zendesk.com/hc/en-us
+  termsOfService: https://suppliers.unfi.com
+servers:
+- url: https://api.unfi.com/v1
+  description: UNFI Production API
+tags:
+- name: Insights
+  description: Analytics and data reporting
+paths:
+  /insights/sales:
+    get:
+      operationId: getSalesInsights
+      summary: Get Sales Insights
+      description: Retrieve sales analytics data from the UNFI Insights dashboard. Provides comprehensive sales, inventory, and deduction data across UNFI's entire network spanning both natural (west) and conventional (east) distribution channels.
+      tags:
+      - Insights
+      parameters:
+      - name: startDate
+        in: query
+        required: true
+        schema:
+          type: string
+          format: date
+        description: Start date for insights query
+      - name: endDate
+        in: query
+        required: true
+        schema:
+          type: string
+          format: date
+        description: End date for insights query
+      - name: granularity
+        in: query
+        schema:
+          type: string
+          enum:
+          - weekly
+          - monthly
+          - quarterly
+          default: monthly
+        description: Data aggregation granularity
+      - name: region
+        in: query
+        schema:
+          type: string
+          enum:
+          - east
+          - west
+          - all
+          default: all
+        description: Distribution region filter
+      responses:
+        '200':
+          description: Sales insights returned
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SalesInsightsResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+      security:
+      - ApiKeyAuth: []
+  /insights/fill-rates:
+    get:
+      operationId: getFillRates
+      summary: Get Fill Rate Data
+      description: Retrieve fill rate metrics for supplier products across UNFI distribution centers.
+      tags:
+      - Insights
+      parameters:
+      - name: startDate
+        in: query
+        required: true
+        schema:
+          type: string
+          format: date
+      - name: endDate
+        in: query
+        required: true
+        schema:
+          type: string
+          format: date
+      - name: productId
+        in: query
+        schema:
+          type: string
+        description: Filter by specific product
+      responses:
+        '200':
+          description: Fill rate data returned
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FillRateResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+      security:
+      - ApiKeyAuth: []
+  /insights/inventory:
+    get:
+      operationId: getInventoryInsights
+      summary: Get Inventory Insights
+      description: Retrieve inventory levels, voids, and food waste dashboard data.
+      tags:
+      - Insights
+      parameters:
+      - name: warehouseId
+        in: query
+        schema:
+          type: string
+        description: Filter by specific UNFI warehouse
+      - name: asOf
+        in: query
+        schema:
+          type: string
+          format: date
+        description: Inventory snapshot date
+      responses:
+        '200':
+          description: Inventory insights returned
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InventoryInsightsResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+      security:
+      - ApiKeyAuth: []
+components:
+  schemas:
+    InventoryInsightsResponse:
+      type: object
+      properties:
+        asOf:
+          type: string
+          format: date
+        warehouseId:
+          type: string
+        totalSkus:
+          type: integer
+        voidedSkus:
+          type: integer
+        foodWasteValue:
+          type: number
+          format: double
+        lowStockItems:
+          type: array
+          items:
+            type: object
+            properties:
+              productId:
+                type: string
+              currentStock:
+                type: integer
+              reorderPoint:
+                type: integer
+    Error:
+      type: object
+      properties:
+        code:
+          type: string
+        message:
+          type: string
+    SalesInsightsResponse:
+      type: object
+      properties:
+        period:
+          type: string
+        region:
+          type: string
+        totalSales:
+          type: number
+          format: double
+        unitsSold:
+          type: integer
+        topProducts:
+          type: array
+          items:
+            type: object
+            properties:
+              productId:
+                type: string
+              name:
+                type: string
+              sales:
+                type: number
+                format: double
+              unitsSOld:
+                type: integer
+        categoryBreakdown:
+          type: array
+          items:
+            type: object
+            properties:
+              category:
+                type: string
+              sales:
+                type: number
+                format: double
+    FillRateResponse:
+      type: object
+      properties:
+        period:
+          type: string
+        overallFillRate:
+          type: number
+          format: double
+          description: Overall fill rate percentage
+        byProduct:
+          type: array
+          items:
+            type: object
+            properties:
+              productId:
+                type: string
+              fillRate:
+                type: number
+                format: double
+  responses:
+    Unauthorized:
+      description: Authentication required
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+  securitySchemes:
+    ApiKeyAuth:
+      type: apiKey
+      in: header
+      name: X-API-Key
+      description: UNFI supplier API key
