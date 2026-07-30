@@ -1,5 +1,18 @@
 aid: united-natural-foods
 url: https://raw.githubusercontent.com/api-evangelist/united-natural-foods/refs/heads/main/apis.yml
+accessModel:
+  pricing: enterprise
+  onboarding: self-serve
+  trial: false
+  try_now: false
+  public: false
+  label: Enterprise · Self-serve signup
+  confidence: high
+  source:
+  - plans
+  - authentication
+  generated: '2026-07-22'
+  method: derived
 created: '2026-03-21'
 modified: '2026-05-19'
 name: United Natural Foods (UNFI)
@@ -8,7 +21,7 @@ description: >-
   the United States and Canada. UNFI supplies natural, organic, specialty, and conventional foods to over 30,000 retail
   locations. UNFI provides digital supplier and customer portals including myUNFI, supplier portal, EDI integration, and
   the Harmony Core API for data access.
-image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/united-natural-foods.png
 tags:
   - Food Distribution
   - Wholesale
@@ -16,42 +29,70 @@ tags:
   - Supply Chain
   - Fortune 500
 apis:
-  - name: UNFI Harmony Core API
-    description: >-
-      UNFI's Harmony Core API provides read-only access to 42 data files covering supplier, product, inventory, and
-      sales data across UNFI's distribution network. Consumers can perform SQL-style queries including field selection
-      and multi-table joins. Used by suppliers, retailers, and analytics platforms like Crisp to access UNFI Insights
-      data.
-    image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
-    humanURL: https://suppliers.unfi.com
-    baseURL: https://api.unfi.com/v1
-    tags:
-      - Food Distribution
-      - Supply Chain
-      - Analytics
-      - Wholesale
-      - Data API
-    properties:
-      - type: Documentation
-        url: https://suppliers.unfi.com
-      - type: OpenAPI
-        url: https://raw.githubusercontent.com/api-evangelist/united-natural-foods/main/openapi/unfi-supplier-openapi.yml
-  - name: UNFI EDI Integration
-    description: >-
-      UNFI supports Electronic Data Interchange (EDI) for automated exchanges of purchase orders, invoices, and
-      fulfillment data between UNFI and its supplier and retail partners. EDI integration supports the procure-to-pay
-      lifecycle for both suppliers and retailers.
-    image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
-    humanURL: https://suppliers.unfi.com
-    baseURL: https://api.unfi.com/v1
-    tags:
-      - EDI
-      - Supply Chain
-      - Procurement
-      - Invoicing
-    properties:
-      - type: Documentation
-        url: https://suppliers.unfi.com
+- name: UNFI EDI Integration
+  description: >-
+    UNFI supports Electronic Data Interchange (EDI) for automated exchanges of purchase orders, invoices,
+    and fulfillment data between UNFI and its supplier and retail partners. EDI integration supports the
+    procure-to-pay lifecycle for both suppliers and retailers.
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://suppliers.unfi.com
+  baseURL: https://api.unfi.com/v1
+  tags:
+  - EDI
+  - Supply Chain
+  - Procurement
+  - Invoicing
+  properties:
+  - type: Documentation
+    url: https://suppliers.unfi.com
+- aid: united-natural-foods:united-natural-foods-insights-api
+  name: United Natural Foods (UNFI) Insights API
+  description: Analytics and data reporting
+  humanURL: https://suppliers.unfi.com
+  baseURL: https://api.unfi.com/v1
+  tags:
+  - Insights
+  properties:
+  - type: OpenAPI
+    url: openapi/united-natural-foods-insights-api-openapi.yml
+  - type: Documentation
+    url: https://suppliers.unfi.com
+- aid: united-natural-foods:united-natural-foods-orders-api
+  name: United Natural Foods (UNFI) Orders API
+  description: Purchase orders and fulfillment
+  humanURL: https://suppliers.unfi.com
+  baseURL: https://api.unfi.com/v1
+  tags:
+  - Orders
+  properties:
+  - type: OpenAPI
+    url: openapi/united-natural-foods-orders-api-openapi.yml
+  - type: Documentation
+    url: https://suppliers.unfi.com
+- aid: united-natural-foods:united-natural-foods-products-api
+  name: United Natural Foods (UNFI) Products API
+  description: Product catalog and listing management
+  humanURL: https://suppliers.unfi.com
+  baseURL: https://api.unfi.com/v1
+  tags:
+  - Products
+  properties:
+  - type: OpenAPI
+    url: openapi/united-natural-foods-products-api-openapi.yml
+  - type: Documentation
+    url: https://suppliers.unfi.com
+- aid: united-natural-foods:united-natural-foods-suppliers-api
+  name: United Natural Foods (UNFI) Suppliers API
+  description: Supplier profile and warehouse management
+  humanURL: https://suppliers.unfi.com
+  baseURL: https://api.unfi.com/v1
+  tags:
+  - Suppliers
+  properties:
+  - type: OpenAPI
+    url: openapi/united-natural-foods-suppliers-api-openapi.yml
+  - type: Documentation
+    url: https://suppliers.unfi.com
 common:
   - type: AgenticAccess
     url: agentic-access/united-natural-foods-agentic-access.yml
