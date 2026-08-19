@@ -1,0 +1,71 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "UNFI Supplier and Data Insights Suppliers API",
+    "version": "1.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Suppliers",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get Supplier Profile",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.unfi.com/v1/suppliers/:supplierId",
+            "params": [
+              {
+                "name": "supplierId",
+                "value": "",
+                "type": "path",
+                "description": "UNFI supplier identifier"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "X-API-Key",
+              "value": "{{X-API-Key}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Retrieve supplier profile including contact and warehouse information."
+        },
+        {
+          "info": {
+            "name": "Update Supplier Profile",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.unfi.com/v1/suppliers/:supplierId",
+            "params": [
+              {
+                "name": "supplierId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "X-API-Key",
+              "value": "{{X-API-Key}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Update supplier contact, warehouse, and broker information."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

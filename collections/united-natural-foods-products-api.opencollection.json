@@ -1,0 +1,141 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "UNFI Supplier and Data Insights Products API",
+    "version": "1.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Products",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Products",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.unfi.com/v1/products",
+            "params": [
+              {
+                "name": "category",
+                "value": "",
+                "type": "query",
+                "description": "Product category filter"
+              },
+              {
+                "name": "brand",
+                "value": "",
+                "type": "query",
+                "description": "Brand name filter"
+              },
+              {
+                "name": "certification",
+                "value": "",
+                "type": "query",
+                "description": "Filter by product certification"
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "Page number for pagination"
+              },
+              {
+                "name": "pageSize",
+                "value": "",
+                "type": "query",
+                "description": "Number of results per page"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "X-API-Key",
+              "value": "{{X-API-Key}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Retrieve a paginated list of products in the UNFI catalog. Supports filtering by category, brand, and certification type."
+        },
+        {
+          "info": {
+            "name": "Create Product",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.unfi.com/v1/products",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "X-API-Key",
+              "value": "{{X-API-Key}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Submit a new product listing to the UNFI catalog via the supplier portal."
+        },
+        {
+          "info": {
+            "name": "Get Product",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.unfi.com/v1/products/:productId",
+            "params": [
+              {
+                "name": "productId",
+                "value": "",
+                "type": "path",
+                "description": "UNFI product identifier"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "X-API-Key",
+              "value": "{{X-API-Key}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Retrieve details for a specific product by its UNFI product ID."
+        },
+        {
+          "info": {
+            "name": "Update Product",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.unfi.com/v1/products/:productId",
+            "params": [
+              {
+                "name": "productId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "X-API-Key",
+              "value": "{{X-API-Key}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Update an existing product listing in the UNFI catalog."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

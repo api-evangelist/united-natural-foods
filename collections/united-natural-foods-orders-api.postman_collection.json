@@ -1,0 +1,701 @@
+{
+  "item": [
+    {
+      "id": "b0c5d46a-f805-44e4-8e85-9792aff5d2ae",
+      "name": "Orders",
+      "description": {
+        "content": "Purchase orders and fulfillment",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "8cecf149-26ce-44ea-9aab-c584a05da76a",
+          "name": "List Orders",
+          "request": {
+            "name": "List Orders",
+            "description": {
+              "content": "Retrieve purchase orders for the supplier or retailer account.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "orders"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "status",
+                  "value": "<string>",
+                  "description": "Filter by order status"
+                },
+                {
+                  "disabled": false,
+                  "key": "startDate",
+                  "value": "<date>",
+                  "description": "Start date filter"
+                },
+                {
+                  "disabled": false,
+                  "key": "endDate",
+                  "value": "<date>",
+                  "description": "End date filter"
+                },
+                {
+                  "disabled": false,
+                  "key": "warehouseId",
+                  "value": "<string>",
+                  "description": "Filter by UNFI warehouse"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "X-API-Key"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "c843cde5-c4fb-4fc0-abc5-024ca208b491",
+              "name": "Orders returned successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "orders"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "status",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "startDate",
+                      "value": "<date>"
+                    },
+                    {
+                      "key": "endDate",
+                      "value": "<date>"
+                    },
+                    {
+                      "key": "warehouseId",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"orderId\": \"string\",\n    \"purchaseOrderNumber\": \"string\",\n    \"status\": \"pending\",\n    \"supplierId\": \"string\",\n    \"warehouseId\": \"string\",\n    \"orderDate\": \"1961-10-18\",\n    \"requiredDeliveryDate\": \"1950-04-09\",\n    \"lineItems\": [\n      {\n        \"lineId\": \"string\",\n        \"productId\": \"string\",\n        \"upc\": \"string\",\n        \"quantityOrdered\": 5569,\n        \"quantityShipped\": 6917,\n        \"unitCost\": 4441.662267510374,\n        \"totalCost\": 3792.9088843716518\n      },\n      {\n        \"lineId\": \"string\",\n        \"productId\": \"string\",\n        \"upc\": \"string\",\n        \"quantityOrdered\": 9083,\n        \"quantityShipped\": 9233,\n        \"unitCost\": 1972.502330477137,\n        \"totalCost\": 5292.1322609509225\n      }\n    ],\n    \"totalAmount\": 6878.629767638062\n  },\n  {\n    \"orderId\": \"string\",\n    \"purchaseOrderNumber\": \"string\",\n    \"status\": \"confirmed\",\n    \"supplierId\": \"string\",\n    \"warehouseId\": \"string\",\n    \"orderDate\": \"1976-07-09\",\n    \"requiredDeliveryDate\": \"1979-04-23\",\n    \"lineItems\": [\n      {\n        \"lineId\": \"string\",\n        \"productId\": \"string\",\n        \"upc\": \"string\",\n        \"quantityOrdered\": 8399,\n        \"quantityShipped\": 5351,\n        \"unitCost\": 1967.1191039922064,\n        \"totalCost\": 586.3447538891542\n      },\n      {\n        \"lineId\": \"string\",\n        \"productId\": \"string\",\n        \"upc\": \"string\",\n        \"quantityOrdered\": 5833,\n        \"quantityShipped\": 1114,\n        \"unitCost\": 7394.841383907031,\n        \"totalCost\": 6324.58156488755\n      }\n    ],\n    \"totalAmount\": 69.07899176955779\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "6dbf8303-fd34-4516-b4d8-a22bc913f6fd",
+              "name": "Authentication required",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "orders"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "status",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "startDate",
+                      "value": "<date>"
+                    },
+                    {
+                      "key": "endDate",
+                      "value": "<date>"
+                    },
+                    {
+                      "key": "warehouseId",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"string\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "601418eb-b1f8-41bc-a233-011b6983fdb1",
+          "name": "Get Order",
+          "request": {
+            "name": "Get Order",
+            "description": {
+              "content": "Retrieve details for a specific purchase order.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "orders",
+                ":orderId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "orderId",
+                  "description": "(Required) Purchase order identifier"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "X-API-Key"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "25835e69-626c-4f67-b558-312fe0d26765",
+              "name": "Order details returned",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "orders",
+                    ":orderId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "orderId",
+                      "description": "(Required) Purchase order identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"orderId\": \"string\",\n  \"purchaseOrderNumber\": \"string\",\n  \"status\": \"pending\",\n  \"supplierId\": \"string\",\n  \"warehouseId\": \"string\",\n  \"orderDate\": \"1948-01-05\",\n  \"requiredDeliveryDate\": \"1975-01-25\",\n  \"lineItems\": [\n    {\n      \"lineId\": \"string\",\n      \"productId\": \"string\",\n      \"upc\": \"string\",\n      \"quantityOrdered\": 5825,\n      \"quantityShipped\": 7894,\n      \"unitCost\": 4429.297821546135,\n      \"totalCost\": 9124.265217025708\n    },\n    {\n      \"lineId\": \"string\",\n      \"productId\": \"string\",\n      \"upc\": \"string\",\n      \"quantityOrdered\": 2231,\n      \"quantityShipped\": 503,\n      \"unitCost\": 4911.42749634461,\n      \"totalCost\": 9073.358346922547\n    }\n  ],\n  \"totalAmount\": 5190.465867426936\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "8590e3fe-5508-42b8-bcb2-7d5bcad9a3cb",
+              "name": "Authentication required",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "orders",
+                    ":orderId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "orderId",
+                      "description": "(Required) Purchase order identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"string\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "18249c1a-9195-45ec-a47f-abdbd7ce8698",
+              "name": "Resource not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "orders",
+                    ":orderId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "orderId",
+                      "description": "(Required) Purchase order identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"string\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "3202fd1e-4a9f-4701-9dc9-37e07a368a71",
+          "name": "Submit Order Fulfillment",
+          "request": {
+            "name": "Submit Order Fulfillment",
+            "description": {
+              "content": "Submit fulfillment information for a purchase order including ship date and tracking.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "orders",
+                ":orderId",
+                "fulfillment"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "orderId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "X-API-Key"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"shipDate\": \"<date>\",\n  \"carrier\": \"<string>\",\n  \"trackingNumber\": \"<string>\",\n  \"lineItems\": [\n    {\n      \"lineId\": \"<string>\",\n      \"quantityShipped\": \"<integer>\"\n    },\n    {\n      \"lineId\": \"<string>\",\n      \"quantityShipped\": \"<integer>\"\n    }\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "d5a86b32-db93-417b-b8c9-acfb43a88bb5",
+              "name": "Fulfillment submitted successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "orders",
+                    ":orderId",
+                    "fulfillment"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "orderId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"shipDate\": \"<date>\",\n  \"carrier\": \"<string>\",\n  \"trackingNumber\": \"<string>\",\n  \"lineItems\": [\n    {\n      \"lineId\": \"<string>\",\n      \"quantityShipped\": \"<integer>\"\n    },\n    {\n      \"lineId\": \"<string>\",\n      \"quantityShipped\": \"<integer>\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"orderId\": \"string\",\n  \"purchaseOrderNumber\": \"string\",\n  \"status\": \"pending\",\n  \"supplierId\": \"string\",\n  \"warehouseId\": \"string\",\n  \"orderDate\": \"1948-01-05\",\n  \"requiredDeliveryDate\": \"1975-01-25\",\n  \"lineItems\": [\n    {\n      \"lineId\": \"string\",\n      \"productId\": \"string\",\n      \"upc\": \"string\",\n      \"quantityOrdered\": 5825,\n      \"quantityShipped\": 7894,\n      \"unitCost\": 4429.297821546135,\n      \"totalCost\": 9124.265217025708\n    },\n    {\n      \"lineId\": \"string\",\n      \"productId\": \"string\",\n      \"upc\": \"string\",\n      \"quantityOrdered\": 2231,\n      \"quantityShipped\": 503,\n      \"unitCost\": 4911.42749634461,\n      \"totalCost\": 9073.358346922547\n    }\n  ],\n  \"totalAmount\": 5190.465867426936\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "a86a4702-b447-47cb-b323-4691fdae1aca",
+              "name": "Invalid request parameters",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "orders",
+                    ":orderId",
+                    "fulfillment"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "orderId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"shipDate\": \"<date>\",\n  \"carrier\": \"<string>\",\n  \"trackingNumber\": \"<string>\",\n  \"lineItems\": [\n    {\n      \"lineId\": \"<string>\",\n      \"quantityShipped\": \"<integer>\"\n    },\n    {\n      \"lineId\": \"<string>\",\n      \"quantityShipped\": \"<integer>\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"string\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "3d742329-60e4-4d36-b727-891794703f1c",
+              "name": "Authentication required",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "orders",
+                    ":orderId",
+                    "fulfillment"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "orderId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"shipDate\": \"<date>\",\n  \"carrier\": \"<string>\",\n  \"trackingNumber\": \"<string>\",\n  \"lineItems\": [\n    {\n      \"lineId\": \"<string>\",\n      \"quantityShipped\": \"<integer>\"\n    },\n    {\n      \"lineId\": \"<string>\",\n      \"quantityShipped\": \"<integer>\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"string\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.unfi.com/v1",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "a95d0e34-c39e-4406-9644-ac585722c296",
+    "name": "UNFI Supplier and Data Insights Orders API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "United Natural Foods, Inc. (UNFI) provides APIs for suppliers, retailers, and data partners to interact with UNFI's distribution network. The UNFI API suite includes the Harmony Core API for read-only access to supply chain data files, the Supplier Portal API for product catalog and order management, and EDI integration for automated procure-to-pay workflows.\n\nContact Support:\n Name: UNFI Supplier Support",
+      "type": "text/plain"
+    }
+  }
+}

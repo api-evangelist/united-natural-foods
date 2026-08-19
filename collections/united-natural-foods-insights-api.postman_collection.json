@@ -1,0 +1,587 @@
+{
+  "item": [
+    {
+      "id": "d2e756b6-ffea-45f1-9a07-35fc788daa89",
+      "name": "Insights",
+      "description": {
+        "content": "Analytics and data reporting",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "fca7092f-100c-4aef-aae7-2da67bd73fb8",
+          "name": "Get Sales Insights",
+          "request": {
+            "name": "Get Sales Insights",
+            "description": {
+              "content": "Retrieve sales analytics data from the UNFI Insights dashboard. Provides comprehensive sales, inventory, and deduction data across UNFI's entire network spanning both natural (west) and conventional (east) distribution channels.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "insights",
+                "sales"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "startDate",
+                  "value": "<date>",
+                  "description": "(Required) Start date for insights query"
+                },
+                {
+                  "disabled": false,
+                  "key": "endDate",
+                  "value": "<date>",
+                  "description": "(Required) End date for insights query"
+                },
+                {
+                  "disabled": false,
+                  "key": "granularity",
+                  "value": "monthly",
+                  "description": "Data aggregation granularity"
+                },
+                {
+                  "disabled": false,
+                  "key": "region",
+                  "value": "all",
+                  "description": "Distribution region filter"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "X-API-Key"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "c76f7ca4-b3d9-4ee7-8534-b32b30dc90ed",
+              "name": "Sales insights returned",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "insights",
+                    "sales"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "startDate",
+                      "value": "<date>"
+                    },
+                    {
+                      "key": "endDate",
+                      "value": "<date>"
+                    },
+                    {
+                      "key": "granularity",
+                      "value": "monthly"
+                    },
+                    {
+                      "key": "region",
+                      "value": "all"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"period\": \"string\",\n  \"region\": \"string\",\n  \"totalSales\": 5163.7930640474715,\n  \"unitsSold\": 7997,\n  \"topProducts\": [\n    {\n      \"productId\": \"string\",\n      \"name\": \"string\",\n      \"sales\": 8880.925265591462,\n      \"unitsSOld\": 4600\n    },\n    {\n      \"productId\": \"string\",\n      \"name\": \"string\",\n      \"sales\": 7640.16869528665,\n      \"unitsSOld\": 5078\n    }\n  ],\n  \"categoryBreakdown\": [\n    {\n      \"category\": \"string\",\n      \"sales\": 546.007250080286\n    },\n    {\n      \"category\": \"string\",\n      \"sales\": 8059.031540728993\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "7b52cf45-f68c-4984-bd01-9f59cca8bfbc",
+              "name": "Authentication required",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "insights",
+                    "sales"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "startDate",
+                      "value": "<date>"
+                    },
+                    {
+                      "key": "endDate",
+                      "value": "<date>"
+                    },
+                    {
+                      "key": "granularity",
+                      "value": "monthly"
+                    },
+                    {
+                      "key": "region",
+                      "value": "all"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"string\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "2f4e4186-caa1-45b2-aba0-b1f3d2593829",
+          "name": "Get Fill Rate Data",
+          "request": {
+            "name": "Get Fill Rate Data",
+            "description": {
+              "content": "Retrieve fill rate metrics for supplier products across UNFI distribution centers.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "insights",
+                "fill-rates"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "startDate",
+                  "value": "<date>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "endDate",
+                  "value": "<date>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "productId",
+                  "value": "<string>",
+                  "description": "Filter by specific product"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "X-API-Key"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "99f770bb-0611-4a4a-bc49-12a5f3bec873",
+              "name": "Fill rate data returned",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "insights",
+                    "fill-rates"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "startDate",
+                      "value": "<date>"
+                    },
+                    {
+                      "key": "endDate",
+                      "value": "<date>"
+                    },
+                    {
+                      "key": "productId",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"period\": \"string\",\n  \"overallFillRate\": 5428.026909791365,\n  \"byProduct\": [\n    {\n      \"productId\": \"string\",\n      \"fillRate\": 6966.301593816141\n    },\n    {\n      \"productId\": \"string\",\n      \"fillRate\": 4346.344867663636\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "891caf2f-7c2c-44ca-92d3-302b09e44d49",
+              "name": "Authentication required",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "insights",
+                    "fill-rates"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "startDate",
+                      "value": "<date>"
+                    },
+                    {
+                      "key": "endDate",
+                      "value": "<date>"
+                    },
+                    {
+                      "key": "productId",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"string\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "76c95e4e-2d29-475c-8529-fb09eeb0c2d1",
+          "name": "Get Inventory Insights",
+          "request": {
+            "name": "Get Inventory Insights",
+            "description": {
+              "content": "Retrieve inventory levels, voids, and food waste dashboard data.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "insights",
+                "inventory"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "warehouseId",
+                  "value": "<string>",
+                  "description": "Filter by specific UNFI warehouse"
+                },
+                {
+                  "disabled": false,
+                  "key": "asOf",
+                  "value": "<date>",
+                  "description": "Inventory snapshot date"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "X-API-Key"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "923f3e2c-6077-4fe9-8f82-79108b6abf55",
+              "name": "Inventory insights returned",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "insights",
+                    "inventory"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "warehouseId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "asOf",
+                      "value": "<date>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"asOf\": \"2021-12-01\",\n  \"warehouseId\": \"string\",\n  \"totalSkus\": 4857,\n  \"voidedSkus\": 584,\n  \"foodWasteValue\": 6815.601384968265,\n  \"lowStockItems\": [\n    {\n      \"productId\": \"string\",\n      \"currentStock\": 214,\n      \"reorderPoint\": 6766\n    },\n    {\n      \"productId\": \"string\",\n      \"currentStock\": 9244,\n      \"reorderPoint\": 6392\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "90865d3a-e0c6-46e6-b55a-8f8fc072fec2",
+              "name": "Authentication required",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "insights",
+                    "inventory"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "warehouseId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "asOf",
+                      "value": "<date>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"string\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.unfi.com/v1",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "fab2bdb8-45d0-430d-8d91-e2d7e73b5c4b",
+    "name": "UNFI Supplier and Data Insights API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "United Natural Foods, Inc. (UNFI) provides APIs for suppliers, retailers, and data partners to interact with UNFI's distribution network. The UNFI API suite includes the Harmony Core API for read-only access to supply chain data files, the Supplier Portal API for product catalog and order management, and EDI integration for automated procure-to-pay workflows.\n\nContact Support:\n Name: UNFI Supplier Support",
+      "type": "text/plain"
+    }
+  }
+}

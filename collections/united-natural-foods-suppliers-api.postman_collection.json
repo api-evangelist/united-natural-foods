@@ -1,0 +1,501 @@
+{
+  "item": [
+    {
+      "id": "65d5a8a0-caeb-4264-ac76-e438715ce0cc",
+      "name": "Suppliers",
+      "description": {
+        "content": "Supplier profile and warehouse management",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "735611df-6462-4c0b-a238-5906656062fa",
+          "name": "Get Supplier Profile",
+          "request": {
+            "name": "Get Supplier Profile",
+            "description": {
+              "content": "Retrieve supplier profile including contact and warehouse information.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "suppliers",
+                ":supplierId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "supplierId",
+                  "description": "(Required) UNFI supplier identifier"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "X-API-Key"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "2644213f-308d-4d4f-95cc-bb2db54ce8f2",
+              "name": "Supplier profile returned",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "suppliers",
+                    ":supplierId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "supplierId",
+                      "description": "(Required) UNFI supplier identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"supplierId\": \"string\",\n  \"name\": \"string\",\n  \"contact\": {\n    \"name\": \"string\",\n    \"email\": \"string\",\n    \"phone\": \"string\"\n  },\n  \"warehouses\": [\n    {\n      \"warehouseId\": \"string\",\n      \"name\": \"string\",\n      \"address\": \"string\"\n    },\n    {\n      \"warehouseId\": \"string\",\n      \"name\": \"string\",\n      \"address\": \"string\"\n    }\n  ],\n  \"brokers\": [\n    {\n      \"brokerId\": \"string\",\n      \"name\": \"string\",\n      \"region\": \"string\"\n    },\n    {\n      \"brokerId\": \"string\",\n      \"name\": \"string\",\n      \"region\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "f026f2b5-f377-427a-8b0a-03380f2c5e7c",
+              "name": "Authentication required",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "suppliers",
+                    ":supplierId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "supplierId",
+                      "description": "(Required) UNFI supplier identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"string\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "6fc983aa-254e-4530-97f2-10a39e8192d2",
+              "name": "Resource not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "suppliers",
+                    ":supplierId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "supplierId",
+                      "description": "(Required) UNFI supplier identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"string\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "7da72a9e-eace-4fe2-94a6-a3523e182dfd",
+          "name": "Update Supplier Profile",
+          "request": {
+            "name": "Update Supplier Profile",
+            "description": {
+              "content": "Update supplier contact, warehouse, and broker information.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "suppliers",
+                ":supplierId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "supplierId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "X-API-Key"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"contact\": {\n    \"name\": \"<string>\",\n    \"email\": \"<string>\",\n    \"phone\": \"<string>\"\n  },\n  \"warehouses\": [\n    {\n      \"warehouseId\": \"<string>\",\n      \"name\": \"<string>\",\n      \"address\": \"<string>\"\n    },\n    {\n      \"warehouseId\": \"<string>\",\n      \"name\": \"<string>\",\n      \"address\": \"<string>\"\n    }\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "5aaf3666-1d46-44cd-8f11-856359c7af84",
+              "name": "Supplier profile updated",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "suppliers",
+                    ":supplierId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "supplierId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"contact\": {\n    \"name\": \"<string>\",\n    \"email\": \"<string>\",\n    \"phone\": \"<string>\"\n  },\n  \"warehouses\": [\n    {\n      \"warehouseId\": \"<string>\",\n      \"name\": \"<string>\",\n      \"address\": \"<string>\"\n    },\n    {\n      \"warehouseId\": \"<string>\",\n      \"name\": \"<string>\",\n      \"address\": \"<string>\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"supplierId\": \"string\",\n  \"name\": \"string\",\n  \"contact\": {\n    \"name\": \"string\",\n    \"email\": \"string\",\n    \"phone\": \"string\"\n  },\n  \"warehouses\": [\n    {\n      \"warehouseId\": \"string\",\n      \"name\": \"string\",\n      \"address\": \"string\"\n    },\n    {\n      \"warehouseId\": \"string\",\n      \"name\": \"string\",\n      \"address\": \"string\"\n    }\n  ],\n  \"brokers\": [\n    {\n      \"brokerId\": \"string\",\n      \"name\": \"string\",\n      \"region\": \"string\"\n    },\n    {\n      \"brokerId\": \"string\",\n      \"name\": \"string\",\n      \"region\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "cf7c4b8c-9984-4ac4-8db4-28f65fad535c",
+              "name": "Invalid request parameters",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "suppliers",
+                    ":supplierId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "supplierId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"contact\": {\n    \"name\": \"<string>\",\n    \"email\": \"<string>\",\n    \"phone\": \"<string>\"\n  },\n  \"warehouses\": [\n    {\n      \"warehouseId\": \"<string>\",\n      \"name\": \"<string>\",\n      \"address\": \"<string>\"\n    },\n    {\n      \"warehouseId\": \"<string>\",\n      \"name\": \"<string>\",\n      \"address\": \"<string>\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"string\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "4e41754c-fd45-440e-9768-49f80b4d5df7",
+              "name": "Authentication required",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "suppliers",
+                    ":supplierId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "supplierId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"contact\": {\n    \"name\": \"<string>\",\n    \"email\": \"<string>\",\n    \"phone\": \"<string>\"\n  },\n  \"warehouses\": [\n    {\n      \"warehouseId\": \"<string>\",\n      \"name\": \"<string>\",\n      \"address\": \"<string>\"\n    },\n    {\n      \"warehouseId\": \"<string>\",\n      \"name\": \"<string>\",\n      \"address\": \"<string>\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"string\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.unfi.com/v1",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "630ed24a-b326-49c3-ba54-722a62adf4fc",
+    "name": "UNFI Supplier and Data Insights Suppliers API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "United Natural Foods, Inc. (UNFI) provides APIs for suppliers, retailers, and data partners to interact with UNFI's distribution network. The UNFI API suite includes the Harmony Core API for read-only access to supply chain data files, the Supplier Portal API for product catalog and order management, and EDI integration for automated procure-to-pay workflows.\n\nContact Support:\n Name: UNFI Supplier Support",
+      "type": "text/plain"
+    }
+  }
+}

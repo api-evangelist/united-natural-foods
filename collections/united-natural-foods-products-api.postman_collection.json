@@ -1,0 +1,928 @@
+{
+  "item": [
+    {
+      "id": "8b76c5c8-250a-46bd-8cfe-9bc92b95244a",
+      "name": "Products",
+      "description": {
+        "content": "Product catalog and listing management",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "e9236db5-b32b-4e6d-9d2c-24208b68c57c",
+          "name": "List Products",
+          "request": {
+            "name": "List Products",
+            "description": {
+              "content": "Retrieve a paginated list of products in the UNFI catalog. Supports filtering by category, brand, and certification type.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "products"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "category",
+                  "value": "<string>",
+                  "description": "Product category filter"
+                },
+                {
+                  "disabled": false,
+                  "key": "brand",
+                  "value": "<string>",
+                  "description": "Brand name filter"
+                },
+                {
+                  "disabled": false,
+                  "key": "certification",
+                  "value": "<string>",
+                  "description": "Filter by product certification"
+                },
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "1",
+                  "description": "Page number for pagination"
+                },
+                {
+                  "disabled": false,
+                  "key": "pageSize",
+                  "value": "50",
+                  "description": "Number of results per page"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "X-API-Key"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "9e5dfbdc-b3cf-4d9b-8df2-732f46f83093",
+              "name": "Product list returned successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "products"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "category",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "brand",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "certification",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "pageSize",
+                      "value": "50"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"products\": [\n    {\n      \"productId\": \"string\",\n      \"upc\": \"string\",\n      \"gtin\": \"string\",\n      \"name\": \"string\",\n      \"brand\": \"string\",\n      \"description\": \"string\",\n      \"category\": \"string\",\n      \"subCategory\": \"string\",\n      \"certifications\": [\n        \"non-gmo\",\n        \"non-gmo\"\n      ],\n      \"unitSize\": \"string\",\n      \"unitsPerCase\": 3099,\n      \"retailPrice\": 3579.335742923121,\n      \"status\": \"active\"\n    },\n    {\n      \"productId\": \"string\",\n      \"upc\": \"string\",\n      \"gtin\": \"string\",\n      \"name\": \"string\",\n      \"brand\": \"string\",\n      \"description\": \"string\",\n      \"category\": \"string\",\n      \"subCategory\": \"string\",\n      \"certifications\": [\n        \"vegan\",\n        \"non-gmo\"\n      ],\n      \"unitSize\": \"string\",\n      \"unitsPerCase\": 126,\n      \"retailPrice\": 744.2424835665518,\n      \"status\": \"active\"\n    }\n  ],\n  \"total\": 1186,\n  \"page\": 4337,\n  \"pageSize\": 7086\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "e40e9274-f648-4af0-abe3-fbe513f95ec6",
+              "name": "Authentication required",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "products"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "category",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "brand",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "certification",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "pageSize",
+                      "value": "50"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"string\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "ec808c80-4d02-4778-846a-0c1a512e52f1",
+          "name": "Create Product",
+          "request": {
+            "name": "Create Product",
+            "description": {
+              "content": "Submit a new product listing to the UNFI catalog via the supplier portal.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "products"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "X-API-Key"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"upc\": \"<string>\",\n  \"name\": \"<string>\",\n  \"brand\": \"<string>\",\n  \"category\": \"<string>\",\n  \"gtin\": \"<string>\",\n  \"description\": \"<string>\",\n  \"subCategory\": \"<string>\",\n  \"certifications\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"unitSize\": \"<string>\",\n  \"unitsPerCase\": \"<integer>\",\n  \"retailPrice\": \"<double>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "f76acfba-cd00-4f0c-af7f-573963899195",
+              "name": "Product created successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "products"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"upc\": \"<string>\",\n  \"name\": \"<string>\",\n  \"brand\": \"<string>\",\n  \"category\": \"<string>\",\n  \"gtin\": \"<string>\",\n  \"description\": \"<string>\",\n  \"subCategory\": \"<string>\",\n  \"certifications\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"unitSize\": \"<string>\",\n  \"unitsPerCase\": \"<integer>\",\n  \"retailPrice\": \"<double>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"productId\": \"string\",\n  \"upc\": \"string\",\n  \"gtin\": \"string\",\n  \"name\": \"string\",\n  \"brand\": \"string\",\n  \"description\": \"string\",\n  \"category\": \"string\",\n  \"subCategory\": \"string\",\n  \"certifications\": [\n    \"organic\",\n    \"non-gmo\"\n  ],\n  \"unitSize\": \"string\",\n  \"unitsPerCase\": 1922,\n  \"retailPrice\": 7351.934534901707,\n  \"status\": \"active\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "823a27ab-04d6-4c4c-bde7-d33ee049f114",
+              "name": "Invalid request parameters",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "products"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"upc\": \"<string>\",\n  \"name\": \"<string>\",\n  \"brand\": \"<string>\",\n  \"category\": \"<string>\",\n  \"gtin\": \"<string>\",\n  \"description\": \"<string>\",\n  \"subCategory\": \"<string>\",\n  \"certifications\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"unitSize\": \"<string>\",\n  \"unitsPerCase\": \"<integer>\",\n  \"retailPrice\": \"<double>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"string\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "07881639-a884-47ce-bfd7-8f7934e50aa3",
+              "name": "Authentication required",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "products"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"upc\": \"<string>\",\n  \"name\": \"<string>\",\n  \"brand\": \"<string>\",\n  \"category\": \"<string>\",\n  \"gtin\": \"<string>\",\n  \"description\": \"<string>\",\n  \"subCategory\": \"<string>\",\n  \"certifications\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"unitSize\": \"<string>\",\n  \"unitsPerCase\": \"<integer>\",\n  \"retailPrice\": \"<double>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"string\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "58f0ffb9-0d05-4eb5-b704-2cb510180d0b",
+          "name": "Get Product",
+          "request": {
+            "name": "Get Product",
+            "description": {
+              "content": "Retrieve details for a specific product by its UNFI product ID.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "products",
+                ":productId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "productId",
+                  "description": "(Required) UNFI product identifier"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "X-API-Key"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "03ca4a26-f9f0-4fc9-ae6d-d47500826876",
+              "name": "Product details returned",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "products",
+                    ":productId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "productId",
+                      "description": "(Required) UNFI product identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"productId\": \"string\",\n  \"upc\": \"string\",\n  \"gtin\": \"string\",\n  \"name\": \"string\",\n  \"brand\": \"string\",\n  \"description\": \"string\",\n  \"category\": \"string\",\n  \"subCategory\": \"string\",\n  \"certifications\": [\n    \"organic\",\n    \"non-gmo\"\n  ],\n  \"unitSize\": \"string\",\n  \"unitsPerCase\": 1922,\n  \"retailPrice\": 7351.934534901707,\n  \"status\": \"active\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "e164a17a-8f93-4dcb-9f7c-bb11ce3348a5",
+              "name": "Authentication required",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "products",
+                    ":productId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "productId",
+                      "description": "(Required) UNFI product identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"string\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "5e2bedb2-fe74-43c7-93bd-6ff4040ad048",
+              "name": "Resource not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "products",
+                    ":productId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "productId",
+                      "description": "(Required) UNFI product identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"string\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "c0656276-a887-4856-9e3a-d3eb8d6cff10",
+          "name": "Update Product",
+          "request": {
+            "name": "Update Product",
+            "description": {
+              "content": "Update an existing product listing in the UNFI catalog.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "products",
+                ":productId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "productId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "X-API-Key"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"upc\": \"<string>\",\n  \"name\": \"<string>\",\n  \"brand\": \"<string>\",\n  \"category\": \"<string>\",\n  \"gtin\": \"<string>\",\n  \"description\": \"<string>\",\n  \"subCategory\": \"<string>\",\n  \"certifications\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"unitSize\": \"<string>\",\n  \"unitsPerCase\": \"<integer>\",\n  \"retailPrice\": \"<double>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "0f5706d3-0b2d-478c-b911-2e0f0e0a9146",
+              "name": "Product updated successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "products",
+                    ":productId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "productId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"upc\": \"<string>\",\n  \"name\": \"<string>\",\n  \"brand\": \"<string>\",\n  \"category\": \"<string>\",\n  \"gtin\": \"<string>\",\n  \"description\": \"<string>\",\n  \"subCategory\": \"<string>\",\n  \"certifications\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"unitSize\": \"<string>\",\n  \"unitsPerCase\": \"<integer>\",\n  \"retailPrice\": \"<double>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"productId\": \"string\",\n  \"upc\": \"string\",\n  \"gtin\": \"string\",\n  \"name\": \"string\",\n  \"brand\": \"string\",\n  \"description\": \"string\",\n  \"category\": \"string\",\n  \"subCategory\": \"string\",\n  \"certifications\": [\n    \"organic\",\n    \"non-gmo\"\n  ],\n  \"unitSize\": \"string\",\n  \"unitsPerCase\": 1922,\n  \"retailPrice\": 7351.934534901707,\n  \"status\": \"active\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "2fe2544b-0cfc-4ddd-a7de-fa17a1b716ad",
+              "name": "Authentication required",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "products",
+                    ":productId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "productId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"upc\": \"<string>\",\n  \"name\": \"<string>\",\n  \"brand\": \"<string>\",\n  \"category\": \"<string>\",\n  \"gtin\": \"<string>\",\n  \"description\": \"<string>\",\n  \"subCategory\": \"<string>\",\n  \"certifications\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"unitSize\": \"<string>\",\n  \"unitsPerCase\": \"<integer>\",\n  \"retailPrice\": \"<double>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"string\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "e44d1b51-3ed2-4a82-ad42-ea4e0ebb7f5f",
+              "name": "Resource not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "products",
+                    ":productId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "productId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"upc\": \"<string>\",\n  \"name\": \"<string>\",\n  \"brand\": \"<string>\",\n  \"category\": \"<string>\",\n  \"gtin\": \"<string>\",\n  \"description\": \"<string>\",\n  \"subCategory\": \"<string>\",\n  \"certifications\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"unitSize\": \"<string>\",\n  \"unitsPerCase\": \"<integer>\",\n  \"retailPrice\": \"<double>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"string\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.unfi.com/v1",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "4f2faf68-05d7-4b8d-ae69-60b683b01a79",
+    "name": "UNFI Supplier and Data Insights Products API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "United Natural Foods, Inc. (UNFI) provides APIs for suppliers, retailers, and data partners to interact with UNFI's distribution network. The UNFI API suite includes the Harmony Core API for read-only access to supply chain data files, the Supplier Portal API for product catalog and order management, and EDI integration for automated procure-to-pay workflows.\n\nContact Support:\n Name: UNFI Supplier Support",
+      "type": "text/plain"
+    }
+  }
+}
