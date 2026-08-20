@@ -64,6 +64,8 @@ apis:
   humanURL: https://suppliers.unfi.com
   baseURL: https://api.unfi.com/v1
   tags:
+  - Order
+  tags_raw:
   - Orders
   properties:
   - type: OpenAPI
@@ -76,6 +78,8 @@ apis:
   humanURL: https://suppliers.unfi.com
   baseURL: https://api.unfi.com/v1
   tags:
+  - Product
+  tags_raw:
   - Products
   properties:
   - type: OpenAPI
