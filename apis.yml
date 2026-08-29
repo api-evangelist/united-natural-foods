@@ -110,6 +110,9 @@ apis:
   - type: Documentation
     url: https://suppliers.unfi.com
 common:
+  - type: CapabilityMap
+    url: capabilities/united-natural-foods-capability-edges.yml
+    name: United Natural Foods (UNFI) Business Capability Map
   - type: AgenticAccess
     url: agentic-access/united-natural-foods-agentic-access.yml
   - type: DomainSecurity
