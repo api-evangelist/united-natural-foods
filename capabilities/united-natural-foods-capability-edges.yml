@@ -11,7 +11,7 @@ capability_model:
   attribution: Turbo EA Capabilities by Vincent Verdet — Turbo EA, https://github.com/vincentmakes/turbo-ea-capabilities,
     CC BY 4.0
   notice: NOTICE
-edge_count: 1
+edge_count: 2
 edges:
 - tag: Orders
   spec_file: united-natural-foods-orders-api-openapi.yml
@@ -23,3 +23,13 @@ edges:
     Fulfillment
   reason: Purchase orders issued by the distributor to suppliers with fulfilment confirmation submitted
     back — order-to-fulfilment orchestration in the supply chain.
+- tag: Products
+  spec_file: united-natural-foods-products-api-openapi.yml
+  capability_id: BC-2370.10
+  capability_id_l1: BC-2370
+  capability_name: Item Master Data Management
+  confidence: 0.72
+  evidence: POST /products  createProduct; "the Supplier Portal API for product catalog and order management"
+  reason: Supplier-facing creation and maintenance of product catalog records is item master data management
+    for a food distributor's product information.
+  recovered_from: vertical-retail-consumer-goods-edges.json
