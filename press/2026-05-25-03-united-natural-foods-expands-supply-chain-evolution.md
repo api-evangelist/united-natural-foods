@@ -1,7 +1,9 @@
 ---
 title: United Natural Foods Expands Supply Chain Evolution ...
 url: https://www.businesswire.com/news/home/20240129358372/en/United-Natural-Foods-Expands-Supply-Chain-Evolution-with-Implementation-of-A.I.-Powered-Warehouse-Automation-System-in-its-New-Manchester-Distribution-Center
-date: '2026-05-25'
+published: ''
+date_basis: harvested
+harvested: '2026-05-25'
 query: '"United Natural Foods" press release artificial intelligence'
 position: 3
 source: serpapi-google

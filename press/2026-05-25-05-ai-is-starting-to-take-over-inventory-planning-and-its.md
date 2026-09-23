@@ -1,7 +1,9 @@
 ---
 title: AI is starting to take over inventory planning and it's ...
 url: https://www.instagram.com/reel/DWICYYlBpb6/
-date: '2026-05-25'
+published: ''
+date_basis: harvested
+harvested: '2026-05-25'
 query: '"United Natural Foods" press release artificial intelligence'
 position: 5
 source: serpapi-google

@@ -1,7 +1,9 @@
 ---
 title: UNFI taps into AI to improve forecasting, fulfillment
 url: https://www.digitalcommerce360.com/2025/12/02/unfi-ai-digital-overhaul-q1-fiscal-2026/
-date: '2026-05-25'
+published: '2025-12-02'
+date_basis: url-derived
+harvested: '2026-05-25'
 query: '"United Natural Foods" press release artificial intelligence'
 position: 1
 source: serpapi-google

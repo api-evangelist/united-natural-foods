@@ -1,4 +1,4 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
   title: UNFI Supplier and Data Insights API
   description: United Natural Foods, Inc. (UNFI) provides APIs for suppliers, retailers, and data partners to interact with UNFI's distribution network. The UNFI API suite includes the Harmony Core API for read-only access to supply chain data files, the Supplier Portal API for product catalog and order management, and EDI integration for automated procure-to-pay workflows.
@@ -135,6 +135,32 @@ paths:
       - ApiKeyAuth: []
 components:
   schemas:
+    FillRateResponse:
+      type: object
+      properties:
+        period:
+          type: string
+        overallFillRate:
+          type: number
+          format: double
+          description: Overall fill rate percentage
+        byProduct:
+          type: array
+          items:
+            type: object
+            properties:
+              productId:
+                type: string
+              fillRate:
+                type: number
+                format: double
+    Error:
+      type: object
+      properties:
+        code:
+          type: string
+        message:
+          type: string
     InventoryInsightsResponse:
       type: object
       properties:
@@ -161,13 +187,6 @@ components:
                 type: integer
               reorderPoint:
                 type: integer
-    Error:
-      type: object
-      properties:
-        code:
-          type: string
-        message:
-          type: string
     SalesInsightsResponse:
       type: object
       properties:
@@ -202,25 +221,6 @@ components:
               category:
                 type: string
               sales:
-                type: number
-                format: double
-    FillRateResponse:
-      type: object
-      properties:
-        period:
-          type: string
-        overallFillRate:
-          type: number
-          format: double
-          description: Overall fill rate percentage
-        byProduct:
-          type: array
-          items:
-            type: object
-            properties:
-              productId:
-                type: string
-              fillRate:
                 type: number
                 format: double
   responses:
