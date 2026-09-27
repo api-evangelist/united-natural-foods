@@ -124,6 +124,25 @@ paths:
       - ApiKeyAuth: []
 components:
   schemas:
+    OrderLineItem:
+      type: object
+      properties:
+        lineId:
+          type: string
+        productId:
+          type: string
+        upc:
+          type: string
+        quantityOrdered:
+          type: integer
+        quantityShipped:
+          type: integer
+        unitCost:
+          type: number
+          format: double
+        totalCost:
+          type: number
+          format: double
     Order:
       type: object
       properties:
@@ -154,25 +173,6 @@ components:
           items:
             $ref: '#/components/schemas/OrderLineItem'
         totalAmount:
-          type: number
-          format: double
-    OrderLineItem:
-      type: object
-      properties:
-        lineId:
-          type: string
-        productId:
-          type: string
-        upc:
-          type: string
-        quantityOrdered:
-          type: integer
-        quantityShipped:
-          type: integer
-        unitCost:
-          type: number
-          format: double
-        totalCost:
           type: number
           format: double
     FulfillmentRequest:
@@ -212,14 +212,14 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/Error'
-    Unauthorized:
-      description: Authentication required
+    NotFound:
+      description: Resource not found
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/Error'
-    NotFound:
-      description: Resource not found
+    Unauthorized:
+      description: Authentication required
       content:
         application/json:
           schema:

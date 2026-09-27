@@ -154,13 +154,6 @@ components:
               fillRate:
                 type: number
                 format: double
-    Error:
-      type: object
-      properties:
-        code:
-          type: string
-        message:
-          type: string
     InventoryInsightsResponse:
       type: object
       properties:
@@ -187,6 +180,13 @@ components:
                 type: integer
               reorderPoint:
                 type: integer
+    Error:
+      type: object
+      properties:
+        code:
+          type: string
+        message:
+          type: string
     SalesInsightsResponse:
       type: object
       properties:
