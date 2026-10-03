@@ -135,6 +135,42 @@ paths:
       - ApiKeyAuth: []
 components:
   schemas:
+    SalesInsightsResponse:
+      type: object
+      properties:
+        period:
+          type: string
+        region:
+          type: string
+        totalSales:
+          type: number
+          format: double
+        unitsSold:
+          type: integer
+        topProducts:
+          type: array
+          items:
+            type: object
+            properties:
+              productId:
+                type: string
+              name:
+                type: string
+              sales:
+                type: number
+                format: double
+              unitsSOld:
+                type: integer
+        categoryBreakdown:
+          type: array
+          items:
+            type: object
+            properties:
+              category:
+                type: string
+              sales:
+                type: number
+                format: double
     FillRateResponse:
       type: object
       properties:
@@ -187,42 +223,6 @@ components:
           type: string
         message:
           type: string
-    SalesInsightsResponse:
-      type: object
-      properties:
-        period:
-          type: string
-        region:
-          type: string
-        totalSales:
-          type: number
-          format: double
-        unitsSold:
-          type: integer
-        topProducts:
-          type: array
-          items:
-            type: object
-            properties:
-              productId:
-                type: string
-              name:
-                type: string
-              sales:
-                type: number
-                format: double
-              unitsSOld:
-                type: integer
-        categoryBreakdown:
-          type: array
-          items:
-            type: object
-            properties:
-              category:
-                type: string
-              sales:
-                type: number
-                format: double
   responses:
     Unauthorized:
       description: Authentication required

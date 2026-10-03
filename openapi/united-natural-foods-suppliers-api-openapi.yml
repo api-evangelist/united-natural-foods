@@ -73,26 +73,30 @@ paths:
       security:
       - ApiKeyAuth: []
 components:
-  responses:
-    BadRequest:
-      description: Invalid request parameters
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    NotFound:
-      description: Resource not found
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    Unauthorized:
-      description: Authentication required
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
   schemas:
+    SupplierUpdateRequest:
+      type: object
+      properties:
+        contact:
+          type: object
+          properties:
+            name:
+              type: string
+            email:
+              type: string
+            phone:
+              type: string
+        warehouses:
+          type: array
+          items:
+            type: object
+            properties:
+              warehouseId:
+                type: string
+              name:
+                type: string
+              address:
+                type: string
     Supplier:
       type: object
       properties:
@@ -131,29 +135,6 @@ components:
                 type: string
               region:
                 type: string
-    SupplierUpdateRequest:
-      type: object
-      properties:
-        contact:
-          type: object
-          properties:
-            name:
-              type: string
-            email:
-              type: string
-            phone:
-              type: string
-        warehouses:
-          type: array
-          items:
-            type: object
-            properties:
-              warehouseId:
-                type: string
-              name:
-                type: string
-              address:
-                type: string
     Error:
       type: object
       properties:
@@ -161,6 +142,25 @@ components:
           type: string
         message:
           type: string
+  responses:
+    Unauthorized:
+      description: Authentication required
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    BadRequest:
+      description: Invalid request parameters
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    NotFound:
+      description: Resource not found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
   securitySchemes:
     ApiKeyAuth:
       type: apiKey

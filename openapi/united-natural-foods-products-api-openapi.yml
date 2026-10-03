@@ -152,6 +152,59 @@ paths:
       - ApiKeyAuth: []
 components:
   schemas:
+    ProductListResponse:
+      type: object
+      properties:
+        products:
+          type: array
+          items:
+            $ref: '#/components/schemas/Product'
+        total:
+          type: integer
+        page:
+          type: integer
+        pageSize:
+          type: integer
+    Error:
+      type: object
+      properties:
+        code:
+          type: string
+        message:
+          type: string
+    ProductRequest:
+      type: object
+      required:
+      - upc
+      - name
+      - brand
+      - category
+      properties:
+        upc:
+          type: string
+        gtin:
+          type: string
+        name:
+          type: string
+        brand:
+          type: string
+        description:
+          type: string
+        category:
+          type: string
+        subCategory:
+          type: string
+        certifications:
+          type: array
+          items:
+            type: string
+        unitSize:
+          type: string
+        unitsPerCase:
+          type: integer
+        retailPrice:
+          type: number
+          format: double
     Product:
       type: object
       properties:
@@ -198,60 +251,13 @@ components:
           - active
           - discontinued
           - seasonal
-    ProductRequest:
-      type: object
-      required:
-      - upc
-      - name
-      - brand
-      - category
-      properties:
-        upc:
-          type: string
-        gtin:
-          type: string
-        name:
-          type: string
-        brand:
-          type: string
-        description:
-          type: string
-        category:
-          type: string
-        subCategory:
-          type: string
-        certifications:
-          type: array
-          items:
-            type: string
-        unitSize:
-          type: string
-        unitsPerCase:
-          type: integer
-        retailPrice:
-          type: number
-          format: double
-    ProductListResponse:
-      type: object
-      properties:
-        products:
-          type: array
-          items:
-            $ref: '#/components/schemas/Product'
-        total:
-          type: integer
-        page:
-          type: integer
-        pageSize:
-          type: integer
-    Error:
-      type: object
-      properties:
-        code:
-          type: string
-        message:
-          type: string
   responses:
+    Unauthorized:
+      description: Authentication required
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
     BadRequest:
       description: Invalid request parameters
       content:
@@ -260,12 +266,6 @@ components:
             $ref: '#/components/schemas/Error'
     NotFound:
       description: Resource not found
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    Unauthorized:
-      description: Authentication required
       content:
         application/json:
           schema:
