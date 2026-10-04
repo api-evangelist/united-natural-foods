@@ -135,6 +135,51 @@ paths:
       - ApiKeyAuth: []
 components:
   schemas:
+    InventoryInsightsResponse:
+      type: object
+      properties:
+        asOf:
+          type: string
+          format: date
+        warehouseId:
+          type: string
+        totalSkus:
+          type: integer
+        voidedSkus:
+          type: integer
+        foodWasteValue:
+          type: number
+          format: double
+        lowStockItems:
+          type: array
+          items:
+            type: object
+            properties:
+              productId:
+                type: string
+              currentStock:
+                type: integer
+              reorderPoint:
+                type: integer
+    FillRateResponse:
+      type: object
+      properties:
+        period:
+          type: string
+        overallFillRate:
+          type: number
+          format: double
+          description: Overall fill rate percentage
+        byProduct:
+          type: array
+          items:
+            type: object
+            properties:
+              productId:
+                type: string
+              fillRate:
+                type: number
+                format: double
     SalesInsightsResponse:
       type: object
       properties:
@@ -171,51 +216,6 @@ components:
               sales:
                 type: number
                 format: double
-    FillRateResponse:
-      type: object
-      properties:
-        period:
-          type: string
-        overallFillRate:
-          type: number
-          format: double
-          description: Overall fill rate percentage
-        byProduct:
-          type: array
-          items:
-            type: object
-            properties:
-              productId:
-                type: string
-              fillRate:
-                type: number
-                format: double
-    InventoryInsightsResponse:
-      type: object
-      properties:
-        asOf:
-          type: string
-          format: date
-        warehouseId:
-          type: string
-        totalSkus:
-          type: integer
-        voidedSkus:
-          type: integer
-        foodWasteValue:
-          type: number
-          format: double
-        lowStockItems:
-          type: array
-          items:
-            type: object
-            properties:
-              productId:
-                type: string
-              currentStock:
-                type: integer
-              reorderPoint:
-                type: integer
     Error:
       type: object
       properties:

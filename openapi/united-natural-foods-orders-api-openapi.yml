@@ -124,38 +124,6 @@ paths:
       - ApiKeyAuth: []
 components:
   schemas:
-    Order:
-      type: object
-      properties:
-        orderId:
-          type: string
-        purchaseOrderNumber:
-          type: string
-        status:
-          type: string
-          enum:
-          - pending
-          - confirmed
-          - shipped
-          - delivered
-          - cancelled
-        supplierId:
-          type: string
-        warehouseId:
-          type: string
-        orderDate:
-          type: string
-          format: date
-        requiredDeliveryDate:
-          type: string
-          format: date
-        lineItems:
-          type: array
-          items:
-            $ref: '#/components/schemas/OrderLineItem'
-        totalAmount:
-          type: number
-          format: double
     FulfillmentRequest:
       type: object
       required:
@@ -196,6 +164,38 @@ components:
           type: number
           format: double
         totalCost:
+          type: number
+          format: double
+    Order:
+      type: object
+      properties:
+        orderId:
+          type: string
+        purchaseOrderNumber:
+          type: string
+        status:
+          type: string
+          enum:
+          - pending
+          - confirmed
+          - shipped
+          - delivered
+          - cancelled
+        supplierId:
+          type: string
+        warehouseId:
+          type: string
+        orderDate:
+          type: string
+          format: date
+        requiredDeliveryDate:
+          type: string
+          format: date
+        lineItems:
+          type: array
+          items:
+            $ref: '#/components/schemas/OrderLineItem'
+        totalAmount:
           type: number
           format: double
     Error:
