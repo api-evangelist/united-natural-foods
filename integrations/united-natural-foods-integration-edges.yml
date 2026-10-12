@@ -1,0 +1,18 @@
+generated: '2026-10-12'
+method: none
+source:
+- https://zapier.com/apps/united-natural-foods/integrations
+- https://zapier.com/apps/united-natural-foods-unfi/integrations
+- https://n8n.io/integrations/united-natural-foods/
+- https://composio.dev/toolkits/united-natural-foods
+- https://monid.ai/tools/united-natural-foods
+checked:
+- https://composio.dev/toolkits/united-natural-foods
+- https://monid.ai/tools/united-natural-foods
+- https://n8n.io/integrations/united-natural-foods/
+- https://zapier.com/apps/united-natural-foods-unfi/integrations
+- https://zapier.com/apps/united-natural-foods/integrations
+summary: null
+marketplace_apps: []
+edges: []
+templates: []
