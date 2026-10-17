@@ -135,32 +135,13 @@ paths:
       - ApiKeyAuth: []
 components:
   schemas:
-    InventoryInsightsResponse:
+    Error:
       type: object
       properties:
-        asOf:
+        code:
           type: string
-          format: date
-        warehouseId:
+        message:
           type: string
-        totalSkus:
-          type: integer
-        voidedSkus:
-          type: integer
-        foodWasteValue:
-          type: number
-          format: double
-        lowStockItems:
-          type: array
-          items:
-            type: object
-            properties:
-              productId:
-                type: string
-              currentStock:
-                type: integer
-              reorderPoint:
-                type: integer
     FillRateResponse:
       type: object
       properties:
@@ -216,13 +197,32 @@ components:
               sales:
                 type: number
                 format: double
-    Error:
+    InventoryInsightsResponse:
       type: object
       properties:
-        code:
+        asOf:
           type: string
-        message:
+          format: date
+        warehouseId:
           type: string
+        totalSkus:
+          type: integer
+        voidedSkus:
+          type: integer
+        foodWasteValue:
+          type: number
+          format: double
+        lowStockItems:
+          type: array
+          items:
+            type: object
+            properties:
+              productId:
+                type: string
+              currentStock:
+                type: integer
+              reorderPoint:
+                type: integer
   responses:
     Unauthorized:
       description: Authentication required
