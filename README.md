@@ -1,4 +1,4 @@
-# United Natural Foods (UNFI) (united-natural-foods)
+# United Natural Foods (UNFI)
 
 <!-- API-EVANGELIST-PROVENANCE:BEGIN -->
 > ### About this repository
@@ -66,81 +66,160 @@
 
 United Natural Foods, Inc. (UNFI) is the largest publicly traded wholesale distributor of health and specialty food in the United States and Canada. UNFI supplies natural, organic, specialty, and conventional foods to over 30,000 retail locations. UNFI provides digital supplier and customer portals including myUNFI, supplier portal, EDI integration, and the Harmony Core API for data access.
 
-**APIs.json:** [https://raw.githubusercontent.com/api-evangelist/united-natural-foods/refs/heads/main/apis.yml](https://raw.githubusercontent.com/api-evangelist/united-natural-foods/refs/heads/main/apis.yml)
+**Areas:** Food Distribution · Wholesale · Natural Foods · Supply Chain · Fortune 500
 
-## Tags
+## United Natural Foods (UNFI) on APIs.io
 
-- Food Distribution
-- Wholesale
-- Natural Foods
-- Supply Chain
-- Fortune 500
+Everything profiled for United Natural Foods (UNFI) is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/united-natural-foods/](https://apis.io/providers/united-natural-foods/)** — or go straight to one of the APIs or properties below.
 
-## Timestamps
+### APIs (5)
 
-- **Created:** 2026-03-21
-- **Modified:** 2026-05-19
+- [UNFI EDI Integration](https://apis.io/apis/united-natural-foods/unfi-edi-integration/) — UNFI supports Electronic Data Interchange (EDI) for automated exchanges of purchase orders, invoices, and fulfillment data between UNFI and its supplier and…
+- [United Natural Foods (UNFI) Insights API](https://apis.io/apis/united-natural-foods/united-natural-foods-insights-api/) — Analytics and data reporting
+- [United Natural Foods (UNFI) Orders API](https://apis.io/apis/united-natural-foods/united-natural-foods-orders-api/) — Purchase orders and fulfillment
+- [United Natural Foods (UNFI) Products API](https://apis.io/apis/united-natural-foods/united-natural-foods-products-api/) — Product catalog and listing management
+- [United Natural Foods (UNFI) Suppliers API](https://apis.io/apis/united-natural-foods/united-natural-foods-suppliers-api/) — Supplier profile and warehouse management
 
-## APIs
+### Published properties
 
-### UNFI Harmony Core API
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
 
-UNFI's Harmony Core API provides read-only access to 42 data files covering supplier, product, inventory, and sales data across UNFI's distribution network. Consumers can perform SQL-style queries including field selection and multi-table joins. Used by suppliers, retailers, and analytics platforms like Crisp to access UNFI Insights data.
+#### Agentic access (1)
 
-- **Human URL:** [https://suppliers.unfi.com](https://suppliers.unfi.com)
-- **Base URL:** `https://api.unfi.com/v1`
+Which operations an agent can call, which act, and which need a human in the loop.
 
-#### Tags
+- [United Natural Foods Agentic Access](https://apis.io/agentic-access/united-natural-foods/united-natural-foods-agentic-access/)
 
-- Food Distribution
-- Supply Chain
-- Analytics
-- Wholesale
-- Data API
+#### JSON Schema (2)
 
-#### Properties
+The data models the API reads and writes.
 
-- [Documentation](https://suppliers.unfi.com)
-- [OpenAPI](https://raw.githubusercontent.com/api-evangelist/united-natural-foods/main/openapi/unfi-supplier-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/unfi-supplier.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/unfi-supplier.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+- [UNFI Purchase Order](https://apis.io/schemas/united-natural-foods/unfi-supplier-order/)
+- [UNFI Product](https://apis.io/schemas/united-natural-foods/unfi-supplier-product/)
 
-### UNFI EDI Integration
+#### JSON Structure (1)
 
-UNFI supports Electronic Data Interchange (EDI) for automated exchanges of purchase orders, invoices, and fulfillment data between UNFI and its supplier and retail partners. EDI integration supports the procure-to-pay lifecycle for both suppliers and retailers.
+Data models expressed in JSON Structure.
 
-- **Human URL:** [https://suppliers.unfi.com](https://suppliers.unfi.com)
-- **Base URL:** `https://api.unfi.com/v1`
+- [Unfi Supplier Product Structure](https://apis.io/json-structure/united-natural-foods/unfi-supplier-product-structure/)
 
-#### Tags
+#### JSON-LD (1)
 
-- EDI
-- Supply Chain
-- Procurement
-- Invoicing
+Linked-data contexts for the provider's vocabulary.
 
-#### Properties
+- [United Natural Foods Context](https://apis.io/jsonld/united-natural-foods/united-natural-foods-context/)
 
-- [Documentation](https://suppliers.unfi.com)
-- [Postman Collection](collections/unfi-supplier.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/unfi-supplier.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+#### Vocabulary (1)
 
-## Common Properties
+The provider's domain terms, defined.
+
+- [UNFI Supplier Vocabulary](https://apis.io/vocabularies/united-natural-foods/united-natural-foods-vocabulary/)
+
+#### Examples (3)
+
+Example requests and responses.
+
+- [Unfi Supplier Getsalesinsights Example](https://apis.io/examples/united-natural-foods/unfi-supplier-getSalesInsights-example/)
+- [Unfi Supplier Listorders Example](https://apis.io/examples/united-natural-foods/unfi-supplier-listOrders-example/)
+- [Unfi Supplier Listproducts Example](https://apis.io/examples/united-natural-foods/unfi-supplier-listProducts-example/)
+
+#### Collections (5)
+
+Postman and Open Collection request collections.
+
+- [UNFI Supplier and Data API](https://apis.io/collections/united-natural-foods/open-unfi-supplier/)
+- [UNFI Supplier and Data Insights API](https://apis.io/collections/united-natural-foods/open-united-natural-foods-insights-api/)
+- [UNFI Supplier and Data Insights Orders API](https://apis.io/collections/united-natural-foods/open-united-natural-foods-orders-api/)
+- [UNFI Supplier and Data Insights Products API](https://apis.io/collections/united-natural-foods/open-united-natural-foods-products-api/)
+- [UNFI Supplier and Data Insights Suppliers API](https://apis.io/collections/united-natural-foods/open-united-natural-foods-suppliers-api/)
+
+#### Governance rules (2)
+
+Spectral rulesets for the provider's contracts.
+
+- [United Natural Foods (UNFI) — unfi supplier rules](https://apis.io/rules/united-natural-foods/unfi-supplier-rules/)
+- [United Natural Foods (UNFI) — jsonschema rules](https://apis.io/rules/united-natural-foods/united-natural-foods-jsonschema-spectral-rules/)
+
+#### Security (2)
+
+Authentication, trust centre, and vulnerability disclosure.
+
+- [United Natural Foods Authentication](https://apis.io/security/united-natural-foods/united-natural-foods-authentication/)
+- [United Natural Foods Domain Security](https://apis.io/security/united-natural-foods/united-natural-foods-domain-security/)
+
+#### Plans and pricing (1)
+
+Published plans, tiers and prices.
+
+- [United Natural Foods Plans Pricing](https://apis.io/plans/united-natural-foods/united-natural-foods-plans-pricing/)
+
+#### Rate limits (1)
+
+Published request limits.
+
+- [United Natural Foods Rate Limits](https://apis.io/rate-limits/united-natural-foods/united-natural-foods-rate-limits/)
+
+#### FinOps (1)
+
+What the API costs to run, by operation.
+
+- [United Natural Foods Finops](https://apis.io/finops/united-natural-foods/united-natural-foods-finops/)
+
+## Where to find this API
+
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
 
 - [Website](https://www.unfi.com)
-- [Supplier  Portal](https://suppliers.unfi.com)
-- [Customer  Portal](https://www.myunfi.com)
-- [LinkedIn](https://www.linkedin.com/company/unfi)
-- [X (Twitter)](https://twitter.com/UNFIInc)
-- [Investor  Relations](https://ir.unfi.com)
-- [OpenAPI](https://raw.githubusercontent.com/api-evangelist/united-natural-foods/main/openapi/unfi-supplier-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Spectral Rules](https://raw.githubusercontent.com/api-evangelist/united-natural-foods/main/rules/unfi-supplier-rules.yml)
-- [JSON Schema](https://raw.githubusercontent.com/api-evangelist/united-natural-foods/main/json-schema/unfi-supplier-product-schema.json) — [JSON Schema](https://json-schema.org/specification)
-- [JSON Schema](https://raw.githubusercontent.com/api-evangelist/united-natural-foods/main/json-schema/unfi-supplier-order-schema.json) — [JSON Schema](https://json-schema.org/specification)
-- [J S O N L D Context](https://raw.githubusercontent.com/api-evangelist/united-natural-foods/main/json-ld/united-natural-foods-context.jsonld)
-- [Vocabulary](https://raw.githubusercontent.com/api-evangelist/united-natural-foods/main/vocabulary/united-natural-foods-vocabulary.yml)
 
-## Maintainers
+## API Evangelist rating
 
-**FN:** API Evangelist
-**Email:** info@apievangelist.com
+**Kin Score 27.8** — thin · rubric 0.24.0 · scored 2026-10-17
+
+| Facet | Score |
+|---|---|
+| Discoverability | 66.1 |
+| Contract quality | 56.9 |
+| Contract governance | 27.3 |
+| Operational transparency | 5.3 |
+| Developer ergonomics | 11.9 |
+| Access clarity | 5.3 |
+
+**Agent readiness 17.9** — agent-aware
+
+| Agent-readiness dimension | Result |
+|---|---|
+| Spec Presence | yes |
+| Agentic Access | derived (partial credit) |
+| Reversibility Documented | — |
+| MCP Server | — |
+| Auth Clarity | bearer (partial credit) |
+| Idempotency | — |
+| Error Semantics | — |
+| OpenAPI Examples | — |
+| Rate Limit Signal | derived (partial credit) |
+| Event Surface Described | — |
+| Agent Skills | — |
+| Well Known Catalog | — |
+| Consent Identity | — |
+| Agent Card | — |
+| Dry Run Mode | — |
+| Delegated Identity | — |
+| Protected Resource Metadata | — |
+| Dynamic Client Registration | — |
+| Agentic Commerce | — |
+
+**Regulatory alignment 16.7** — Horizontal (data, software, accessibility, platform)
+
+The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/united-natural-foods/](https://apis.io/providers/united-natural-foods/).
+
+## How this profile is made
+
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
+
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for United Natural Foods (UNFI): the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
+
+## Open an issue
+
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/united-natural-foods/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
